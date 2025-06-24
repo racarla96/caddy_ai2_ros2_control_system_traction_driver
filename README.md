@@ -94,3 +94,17 @@ Para evitar tener que ejecutar el programa como root, puedes configurar el archi
     ```
 
     Deberías ver tu interfaz como `can_motor_drv` o `can_steer_drv`.
+
+
+ros2 control load_controller --set-state active curtis_motor_velocity_controller
+
+
+# Enviar mensaje
+
+sudo ip link add dev vcan_motor_drv type vcan
+sudo ip link set up vcan_motor_drv
+
+ros2 topic pub -r 25  /curtis_motor_velocity_controller/commands std_msgs/msg/Float64 "{data: 1.0}"
+
+# TODOs
+- [ ] Include on launch file the interface as parameter to easy change it

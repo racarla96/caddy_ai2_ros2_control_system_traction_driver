@@ -30,6 +30,10 @@ hardware_interface::CallbackReturn CurtisMotorHardwareInterface::on_init(
     return hardware_interface::CallbackReturn::ERROR;
   }
 
+  RCLCPP_INFO(get_logger(), "Conversion: %.3f", max_v_mps);
+
+  control_rate_write_loop_counts = static_cast<int>(std::floor(update_rate_hz_ / control_rate_hz_));
+
   RCLCPP_INFO(get_logger(), "Initializing Curtis Motor Hardware Interface with CAN interface: %s", can_interface_name_.c_str());
   RCLCPP_INFO(get_logger(), "Update rate: %.2f Hz", update_rate_hz_);
 
@@ -159,7 +163,14 @@ hardware_interface::CallbackReturn CurtisMotorHardwareInterface::on_error(
 hardware_interface::return_type CurtisMotorHardwareInterface::read(
   const rclcpp::Time & /*time*/, const rclcpp::Duration & /*period*/)
 {
-  // // Read CAN frames at 1000Hz
+
+  // if (control_rate_write_counts_ < control_rate_write_loop_counts) {
+  //   control_rate_write_counts_++;
+  //   return hardware_interface::return_type::OK;  // Skip reading if not time to write
+  // }
+  // control_rate_write_counts_ = 1;  // Reset counter for next cycle
+
+  // // Read CAN frames at 250Hz
   frames.clear();
   int num_frames = can_interface_->read(frames, 0);  // Non-blocking read
   
@@ -195,8 +206,25 @@ hardware_interface::return_type CurtisMotorHardwareInterface::read(
 hardware_interface::return_type CurtisMotorHardwareInterface::write(
   const rclcpp::Time & /*time*/, const rclcpp::Duration & /*period*/)
 {
+  if (control_rate_write_counts_ <= control_rate_write_loop_counts) {
+    control_rate_write_counts_++;
+    return hardware_interface::return_type::OK;  // Skip writing if not time to write
+  }
+  control_rate_write_counts_ = 1;  // Reset counter for next cycle
+  velocity_ = get_command(info_.joints[0].name + "/" + "velocity");
+  // RCLCPP_INFO(get_logger(), "Input velocity: %.2f m/s", velocity_);
 
+  // Convert velocity to throttle value  
 
+  // RCLCPP_INFO(get_logger(), "Relation: %.2f m/s", (velocity_ / max_v_mps));
+  int throttle_value = static_cast<int>(std::round( ( (velocity_ * (100.0 / max_v_mps)) * ((double)SHRT_MAX / 100.0)) ));
+  throttle_value = std::clamp(throttle_value, -SHRT_MAX, SHRT_MAX);  // Clamp to valid range
+
+  // RCLCPP_INFO(get_logger(), "Calculated throttle value: %d", throttle_value);
+  // Create throttle frame
+  curtis_driver_->create_0x226_frame(&throttle_frame_, throttle_value, false);
+  // Write throttle command to CAN interface
+  can_interface_->write(throttle_frame_);
   
   return hardware_interface::return_type::OK;
 }

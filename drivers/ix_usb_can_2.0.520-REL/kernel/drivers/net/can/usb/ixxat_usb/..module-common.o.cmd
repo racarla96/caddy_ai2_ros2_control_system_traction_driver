@@ -1,9 +1,10 @@
-savedcmd_/home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ix_usb_can.mod.o := gcc -Wp,-MMD,/home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/.ix_usb_can.mod.o.d -nostdinc -I./arch/x86/include -I./arch/x86/include/generated -I./include -I./arch/x86/include/uapi -I./arch/x86/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/compiler-version.h -include ./include/linux/kconfig.h -include ./include/linux/compiler_types.h -D__KERNEL__ -fmacro-prefix-map=./= -std=gnu11 -fshort-wchar -funsigned-char -fno-common -fno-PIE -fno-strict-aliasing -O3 -fivopts -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -mno-avx2 -fcf-protection=none -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -Wno-sign-compare -fno-asynchronous-unwind-tables -mindirect-branch=thunk-extern -mindirect-branch-register -mindirect-branch-cs-prefix -mfunction-return=thunk-extern -fno-jump-tables -fno-delete-null-pointer-checks -O2 -fmodulo-sched -fmodulo-sched-allow-regmoves -fno-allow-store-data-races -fstack-protector-strong -fno-stack-clash-protection -pg -mrecord-mcount -mfentry -DCC_USING_FENTRY -falign-functions=16 -fstrict-flex-arrays=3 -fno-strict-overflow -fno-stack-check -fconserve-stack -fno-builtin-wcslen -fno-builtin-wcslen -Wall -Wextra -Wundef -Werror=implicit-function-declaration -Werror=implicit-int -Werror=return-type -Werror=strict-prototypes -Wno-format-security -Wno-trigraphs -Wno-frame-address -Wno-address-of-packed-member -Wmissing-declarations -Wmissing-prototypes -Wframe-larger-than=1024 -Wno-main -Wno-dangling-pointer -Wvla -Wno-pointer-sign -Wcast-function-type -Wno-array-bounds -Wno-stringop-overflow -Wno-alloc-size-larger-than -Wimplicit-fallthrough=5 -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init -Wenum-conversion -Wunused -Wno-unused-but-set-variable -Wno-unused-const-variable -Wno-packed-not-aligned -Wno-format-overflow -Wno-format-truncation -Wno-stringop-truncation -Wno-override-init -Wno-missing-field-initializers -Wno-type-limits -Wno-shift-negative-value -Wno-maybe-uninitialized -Wno-sign-compare -Wno-unused-parameter -march=x86-64-v3 -g -gdwarf-5 -DMODULE -DKBUILD_BASENAME='"ix_usb_can.mod"' -DKBUILD_MODNAME='"ix_usb_can"' -D__KBUILD_MODNAME=kmod_ix_usb_can -c -o /home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ix_usb_can.mod.o /home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ix_usb_can.mod.c
+savedcmd_/home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/.module-common.o := gcc -Wp,-MMD,/home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/..module-common.o.d -nostdinc -I./arch/x86/include -I./arch/x86/include/generated -I./include -I./arch/x86/include/uapi -I./arch/x86/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/compiler-version.h -include ./include/linux/kconfig.h -include ./include/linux/compiler_types.h -D__KERNEL__ -fmacro-prefix-map=./= -std=gnu11 -fshort-wchar -funsigned-char -fno-common -fno-PIE -fno-strict-aliasing -O3 -fivopts -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -mno-avx2 -fcf-protection=none -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -Wno-sign-compare -fno-asynchronous-unwind-tables -mindirect-branch=thunk-extern -mindirect-branch-register -mindirect-branch-cs-prefix -mfunction-return=thunk-extern -fno-jump-tables -fno-delete-null-pointer-checks -O2 -fmodulo-sched -fmodulo-sched-allow-regmoves -fno-allow-store-data-races -fstack-protector-strong -fno-stack-clash-protection -pg -mrecord-mcount -mfentry -DCC_USING_FENTRY -falign-functions=16 -fstrict-flex-arrays=3 -fno-strict-overflow -fno-stack-check -fconserve-stack -fno-builtin-wcslen -fno-builtin-wcslen -Wall -Wextra -Wundef -Werror=implicit-function-declaration -Werror=implicit-int -Werror=return-type -Werror=strict-prototypes -Wno-format-security -Wno-trigraphs -Wno-frame-address -Wno-address-of-packed-member -Wmissing-declarations -Wmissing-prototypes -Wframe-larger-than=1024 -Wno-main -Wno-dangling-pointer -Wvla -Wno-pointer-sign -Wcast-function-type -Wno-array-bounds -Wno-stringop-overflow -Wno-alloc-size-larger-than -Wimplicit-fallthrough=5 -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init -Wenum-conversion -Wunused -Wno-unused-but-set-variable -Wno-unused-const-variable -Wno-packed-not-aligned -Wno-format-overflow -Wno-format-truncation -Wno-stringop-truncation -Wno-override-init -Wno-missing-field-initializers -Wno-type-limits -Wno-shift-negative-value -Wno-maybe-uninitialized -Wno-sign-compare -Wno-unused-parameter -march=x86-64-v3 -g -gdwarf-5 -DMODULE -DKBUILD_BASENAME='".module_common"' -DKBUILD_MODNAME='".module_common.o"' -D__KBUILD_MODNAME=kmod_.module_common.o -c -o /home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/.module-common.o scripts/module-common.c
 
-source_/home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ix_usb_can.mod.o := /home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ix_usb_can.mod.c
+source_/home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/.module-common.o := scripts/module-common.c
 
-deps_/home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ix_usb_can.mod.o := \
-    $(wildcard include/config/MODULE_UNLOAD) \
+deps_/home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/.module-common.o := \
+    $(wildcard include/config/UNWINDER_ORC) \
+    $(wildcard include/config/MITIGATION_RETPOLINE) \
   include/linux/compiler-version.h \
     $(wildcard include/config/CC_VERSION_TEXT) \
   include/linux/kconfig.h \
@@ -25,7 +26,6 @@ deps_/home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_dri
     $(wildcard include/config/CC_HAS_ASM_INLINE) \
   include/linux/compiler_attributes.h \
   include/linux/compiler-gcc.h \
-    $(wildcard include/config/MITIGATION_RETPOLINE) \
     $(wildcard include/config/ARCH_USE_BUILTIN_BSWAP) \
     $(wildcard include/config/SHADOW_CALL_STACK) \
     $(wildcard include/config/KCOV) \
@@ -52,6 +52,7 @@ deps_/home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_dri
     $(wildcard include/config/HAVE_STATIC_CALL_INLINE) \
     $(wildcard include/config/KUNIT) \
     $(wildcard include/config/PRINTK_INDEX) \
+    $(wildcard include/config/MODULE_UNLOAD) \
     $(wildcard include/config/MITIGATION_ITS) \
     $(wildcard include/config/CONSTRUCTORS) \
     $(wildcard include/config/FUNCTION_ERROR_INJECTION) \
@@ -1027,14 +1028,81 @@ deps_/home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_dri
   include/linux/error-injection.h \
   include/asm-generic/error-injection.h \
   arch/x86/include/asm/module.h \
-    $(wildcard include/config/UNWINDER_ORC) \
   include/asm-generic/module.h \
     $(wildcard include/config/HAVE_MOD_ARCH_SPECIFIC) \
     $(wildcard include/config/MODULES_USE_ELF_REL) \
     $(wildcard include/config/MODULES_USE_ELF_RELA) \
-  include/linux/export-internal.h \
-    $(wildcard include/config/PARISC) \
+  include/linux/build-salt.h \
+    $(wildcard include/config/BUILD_SALT) \
+  include/linux/elfnote.h \
+  include/linux/elfnote-lto.h \
+    $(wildcard include/config/LTO) \
+  include/linux/vermagic.h \
+    $(wildcard include/config/PREEMPT_BUILD) \
+  include/generated/utsrelease.h \
+  arch/x86/include/asm/vermagic.h \
+    $(wildcard include/config/M486SX) \
+    $(wildcard include/config/M486) \
+    $(wildcard include/config/M586) \
+    $(wildcard include/config/M586TSC) \
+    $(wildcard include/config/M586MMX) \
+    $(wildcard include/config/MCORE2) \
+    $(wildcard include/config/MNATIVE_INTEL) \
+    $(wildcard include/config/MNATIVE_AMD) \
+    $(wildcard include/config/MNEHALEM) \
+    $(wildcard include/config/MWESTMERE) \
+    $(wildcard include/config/MSILVERMONT) \
+    $(wildcard include/config/MGOLDMONT) \
+    $(wildcard include/config/MGOLDMONTPLUS) \
+    $(wildcard include/config/MSANDYBRIDGE) \
+    $(wildcard include/config/MIVYBRIDGE) \
+    $(wildcard include/config/MHASWELL) \
+    $(wildcard include/config/MBROADWELL) \
+    $(wildcard include/config/MSKYLAKE) \
+    $(wildcard include/config/MSKYLAKEX) \
+    $(wildcard include/config/MCANNONLAKE) \
+    $(wildcard include/config/MICELAKE) \
+    $(wildcard include/config/MCASCADELAKE) \
+    $(wildcard include/config/MCOOPERLAKE) \
+    $(wildcard include/config/MTIGERLAKE) \
+    $(wildcard include/config/MSAPPHIRERAPIDS) \
+    $(wildcard include/config/ROCKETLAKE) \
+    $(wildcard include/config/MALDERLAKE) \
+    $(wildcard include/config/MRAPTORLAKE) \
+    $(wildcard include/config/MMETEORLAKE) \
+    $(wildcard include/config/MEMERALDRAPIDS) \
+    $(wildcard include/config/M686) \
+    $(wildcard include/config/MPENTIUMII) \
+    $(wildcard include/config/MPENTIUMIII) \
+    $(wildcard include/config/MPENTIUMM) \
+    $(wildcard include/config/MPENTIUM4) \
+    $(wildcard include/config/MK6) \
+    $(wildcard include/config/MK7) \
+    $(wildcard include/config/MK8) \
+    $(wildcard include/config/MK8SSE3) \
+    $(wildcard include/config/MK10) \
+    $(wildcard include/config/MBARCELONA) \
+    $(wildcard include/config/MBOBCAT) \
+    $(wildcard include/config/MBULLDOZER) \
+    $(wildcard include/config/MPILEDRIVER) \
+    $(wildcard include/config/MSTEAMROLLER) \
+    $(wildcard include/config/MJAGUAR) \
+    $(wildcard include/config/MEXCAVATOR) \
+    $(wildcard include/config/MZEN) \
+    $(wildcard include/config/MZEN2) \
+    $(wildcard include/config/MELAN) \
+    $(wildcard include/config/MCRUSOE) \
+    $(wildcard include/config/MEFFICEON) \
+    $(wildcard include/config/MWINCHIPC6) \
+    $(wildcard include/config/MWINCHIP3D) \
+    $(wildcard include/config/MCYRIXIII) \
+    $(wildcard include/config/MVIAC3_2) \
+    $(wildcard include/config/MVIAC7) \
+    $(wildcard include/config/MGEODEGX1) \
+    $(wildcard include/config/MGEODE_LX) \
+  arch/x86/include/asm/orc_header.h \
+  arch/x86/include/generated/asm/orc_hash.h \
 
-/home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ix_usb_can.mod.o: $(deps_/home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ix_usb_can.mod.o)
+/home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/.module-common.o: $(deps_/home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/.module-common.o)
 
-$(deps_/home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ix_usb_can.mod.o):
+$(deps_/home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/.module-common.o):

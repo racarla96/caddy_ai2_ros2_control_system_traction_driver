@@ -23,7 +23,7 @@
 #define MAX_RPM 4300.0
 #define GEAR_RATIO 16.0
 #define WHEEL_DIAMETER_M 0.5 // m
-#define APROX_THROTTLE_TO_MPS ((M_PI * WHEEL_DIAMETER_M) * ( (MAX_RPM / 60.0) / GEAR_RATIO)) / SHRT_MAX // m/s per throttle value
+#define MAX_V_MPS (M_PI * WHEEL_DIAMETER_M) * ((MAX_RPM / 60.0) / GEAR_RATIO)
 #define RECOVER_TIME 5 // secs
 #define WATCHDOG_TIMEOUT 0.2 // secs
 
@@ -57,10 +57,12 @@ private:
 
   // Max rate for reading and writing data 25 Hz
   double update_rate_hz_; // Rate of the controller manager for read and write operations
-  double control_rate_hz_; // Rate of the control loop for sending commands
+  double control_rate_hz_ = 25; // Rate of the control loop for sending commands
   int control_rate_write_counts_; // Number of write operations per control loop iteration
-  int control_rate_write_counter_; // Counter for control rate (update_rate_hz_ / control_rate_hz_)
+  int control_rate_write_loop_counts; // Counter for control rate (update_rate_hz_ / control_rate_hz_)
   
+  double max_v_mps = MAX_V_MPS; // Maximum velocity in m/s
+  double velocity_; // Current velocity in m/s
   struct can_frame throttle_frame_; // Frame for sending throttle commands
   std::vector<struct can_frame> frames;
 

@@ -1,8 +1,8 @@
-savedcmd_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_motor/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ixxat_usb_cl1.o := gcc-13 -Wp,-MMD,/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_motor/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/.ixxat_usb_cl1.o.d -nostdinc -I./arch/x86/include -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./arch/x86/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/compiler-version.h -include ./include/linux/kconfig.h -I./ubuntu/include -include ./include/linux/compiler_types.h -D__KERNEL__ -fmacro-prefix-map=./= -std=gnu11 -fshort-wchar -funsigned-char -fno-common -fno-PIE -fno-strict-aliasing -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -fcf-protection=none -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -Wno-sign-compare -fno-asynchronous-unwind-tables -mindirect-branch=thunk-extern -mindirect-branch-register -mindirect-branch-cs-prefix -mfunction-return=thunk-extern -fno-jump-tables -mharden-sls=all -fpatchable-function-entry=16,16 -fno-delete-null-pointer-checks -O2 -fno-allow-store-data-races -fstack-protector-strong -fno-omit-frame-pointer -fno-optimize-sibling-calls -ftrivial-auto-var-init=zero -fno-stack-clash-protection -fzero-call-used-regs=used-gpr -pg -mrecord-mcount -mfentry -DCC_USING_FENTRY -falign-functions=16 -fstrict-flex-arrays=3 -fno-strict-overflow -fno-stack-check -fconserve-stack -Wall -Wundef -Werror=implicit-function-declaration -Werror=implicit-int -Werror=return-type -Werror=strict-prototypes -Wno-format-security -Wno-trigraphs -Wno-frame-address -Wno-address-of-packed-member -Wmissing-declarations -Wmissing-prototypes -Wframe-larger-than=1024 -Wno-main -Wno-dangling-pointer -Wvla -Wno-pointer-sign -Wcast-function-type -Wno-stringop-overflow -Wno-array-bounds -Wno-alloc-size-larger-than -Wimplicit-fallthrough=5 -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init -Wenum-conversion -Wextra -Wunused -Wno-unused-but-set-variable -Wno-unused-const-variable -Wno-packed-not-aligned -Wno-format-overflow -Wno-format-truncation -Wno-stringop-truncation -Wno-override-init -Wno-missing-field-initializers -Wno-type-limits -Wno-shift-negative-value -Wno-maybe-uninitialized -Wno-sign-compare -Wno-unused-parameter -g -gdwarf-5  -fsanitize=bounds-strict -fsanitize=shift -fsanitize=bool -fsanitize=enum  -fsanitize=signed-integer-overflow  -DMODULE  -DKBUILD_BASENAME='"ixxat_usb_cl1"' -DKBUILD_MODNAME='"ix_usb_can"' -D__KBUILD_MODNAME=kmod_ix_usb_can -c -o /home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_motor/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ixxat_usb_cl1.o /home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_motor/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ixxat_usb_cl1.c   ; ./tools/objtool/objtool --hacks=jump_label --hacks=noinstr --hacks=skylake --retpoline --rethunk --sls --stackval --static-call --uaccess --prefix=16   --module /home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_motor/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ixxat_usb_cl1.o
+savedcmd_/home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ixxat_usb_cl1.o := gcc -Wp,-MMD,/home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/.ixxat_usb_cl1.o.d -nostdinc -I./arch/x86/include -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./arch/x86/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/compiler-version.h -include ./include/linux/kconfig.h -include ./include/linux/compiler_types.h -D__KERNEL__ -fmacro-prefix-map=./= -std=gnu11 -fshort-wchar -funsigned-char -fno-common -fno-PIE -fno-strict-aliasing -O3 -fivopts -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -mno-avx2 -fcf-protection=none -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mno-red-zone -mcmodel=kernel -Wno-sign-compare -fno-asynchronous-unwind-tables -mindirect-branch=thunk-extern -mindirect-branch-register -mindirect-branch-cs-prefix -mfunction-return=thunk-extern -fno-jump-tables -fno-delete-null-pointer-checks -O2 -fmodulo-sched -fmodulo-sched-allow-regmoves -fno-allow-store-data-races -fstack-protector-strong -fno-stack-clash-protection -pg -mrecord-mcount -mfentry -DCC_USING_FENTRY -falign-functions=16 -fstrict-flex-arrays=3 -fno-strict-overflow -fno-stack-check -fconserve-stack -fno-builtin-wcslen -fno-builtin-wcslen -Wall -Wextra -Wundef -Werror=implicit-function-declaration -Werror=implicit-int -Werror=return-type -Werror=strict-prototypes -Wno-format-security -Wno-trigraphs -Wno-frame-address -Wno-address-of-packed-member -Wmissing-declarations -Wmissing-prototypes -Wframe-larger-than=1024 -Wno-main -Wno-dangling-pointer -Wvla -Wno-pointer-sign -Wcast-function-type -Wno-array-bounds -Wno-stringop-overflow -Wno-alloc-size-larger-than -Wimplicit-fallthrough=5 -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init -Wenum-conversion -Wunused -Wno-unused-but-set-variable -Wno-unused-const-variable -Wno-packed-not-aligned -Wno-format-overflow -Wno-format-truncation -Wno-stringop-truncation -Wno-override-init -Wno-missing-field-initializers -Wno-type-limits -Wno-shift-negative-value -Wno-maybe-uninitialized -Wno-sign-compare -Wno-unused-parameter -march=x86-64-v3 -g -gdwarf-5  -DMODULE  -DKBUILD_BASENAME='"ixxat_usb_cl1"' -DKBUILD_MODNAME='"ix_usb_can"' -D__KBUILD_MODNAME=kmod_ix_usb_can -c -o /home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ixxat_usb_cl1.o /home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ixxat_usb_cl1.c   ; ./tools/objtool/objtool --hacks=jump_label --hacks=noinstr --orc --retpoline --rethunk --static-call --uaccess   --module /home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ixxat_usb_cl1.o
 
-source_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_motor/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ixxat_usb_cl1.o := /home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_motor/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ixxat_usb_cl1.c
+source_/home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ixxat_usb_cl1.o := /home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ixxat_usb_cl1.c
 
-deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_motor/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ixxat_usb_cl1.o := \
+deps_/home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ixxat_usb_cl1.o := \
   include/linux/compiler-version.h \
     $(wildcard include/config/CC_VERSION_TEXT) \
   include/linux/kconfig.h \
@@ -13,7 +13,7 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
     $(wildcard include/config/DEBUG_INFO_BTF) \
     $(wildcard include/config/PAHOLE_HAS_BTF_TAG) \
     $(wildcard include/config/FUNCTION_ALIGNMENT) \
-    $(wildcard include/config/CC_HAS_SANE_FUNCTION_ALIGNMENT) \
+    $(wildcard include/config/CC_IS_GCC) \
     $(wildcard include/config/X86_64) \
     $(wildcard include/config/ARM64) \
     $(wildcard include/config/LD_DEAD_CODE_DATA_ELIMINATION) \
@@ -110,67 +110,24 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
   arch/x86/include/asm/barrier.h \
   arch/x86/include/asm/alternative.h \
     $(wildcard include/config/CALL_THUNKS) \
+    $(wildcard include/config/MITIGATION_ITS) \
   arch/x86/include/asm/asm.h \
     $(wildcard include/config/KPROBES) \
   arch/x86/include/asm/extable_fixup_types.h \
-  arch/x86/include/asm/nops.h \
-  include/asm-generic/barrier.h \
-  arch/x86/include/asm/bitops.h \
-    $(wildcard include/config/X86_CMOV) \
-  arch/x86/include/asm/rmwcc.h \
-  include/linux/args.h \
-  include/asm-generic/bitops/sched.h \
-  arch/x86/include/asm/arch_hweight.h \
-  arch/x86/include/asm/cpufeatures.h \
-  arch/x86/include/asm/required-features.h \
-    $(wildcard include/config/X86_MINIMUM_CPU_FAMILY) \
-    $(wildcard include/config/MATH_EMULATION) \
-    $(wildcard include/config/X86_PAE) \
-    $(wildcard include/config/X86_CMPXCHG64) \
-    $(wildcard include/config/X86_P6_NOP) \
-    $(wildcard include/config/MATOM) \
-    $(wildcard include/config/PARAVIRT_XXL) \
-  arch/x86/include/asm/disabled-features.h \
-    $(wildcard include/config/X86_UMIP) \
-    $(wildcard include/config/X86_INTEL_MEMORY_PROTECTION_KEYS) \
-    $(wildcard include/config/X86_5LEVEL) \
-    $(wildcard include/config/MITIGATION_PAGE_TABLE_ISOLATION) \
+  arch/x86/include/asm/bug.h \
+    $(wildcard include/config/GENERIC_BUG) \
+    $(wildcard include/config/DEBUG_BUGVERBOSE) \
+  include/linux/instrumentation.h \
+    $(wildcard include/config/NOINSTR_VALIDATION) \
+  include/linux/objtool.h \
+    $(wildcard include/config/FRAME_POINTER) \
     $(wildcard include/config/MITIGATION_UNRET_ENTRY) \
-    $(wildcard include/config/MITIGATION_CALL_DEPTH_TRACKING) \
-    $(wildcard include/config/ADDRESS_MASKING) \
-    $(wildcard include/config/INTEL_IOMMU_SVM) \
-    $(wildcard include/config/X86_SGX) \
-    $(wildcard include/config/XEN_PV) \
-    $(wildcard include/config/INTEL_TDX_GUEST) \
-    $(wildcard include/config/X86_USER_SHADOW_STACK) \
-    $(wildcard include/config/X86_FRED) \
-    $(wildcard include/config/KVM_AMD_SEV) \
-  include/asm-generic/bitops/const_hweight.h \
-  include/asm-generic/bitops/instrumented-atomic.h \
-  include/linux/instrumented.h \
-  include/linux/kmsan-checks.h \
-    $(wildcard include/config/KMSAN) \
-  include/asm-generic/bitops/instrumented-non-atomic.h \
-    $(wildcard include/config/KCSAN_ASSUME_PLAIN_WRITES_ATOMIC) \
-  include/asm-generic/bitops/instrumented-lock.h \
-  include/asm-generic/bitops/le.h \
-  arch/x86/include/uapi/asm/byteorder.h \
-  include/linux/byteorder/little_endian.h \
-  include/uapi/linux/byteorder/little_endian.h \
-  include/linux/swab.h \
-  include/uapi/linux/swab.h \
-  arch/x86/include/uapi/asm/swab.h \
-  include/linux/byteorder/generic.h \
-  include/asm-generic/bitops/ext2-atomic-setbit.h \
-  include/linux/hex.h \
-  include/linux/kstrtox.h \
-  include/linux/log2.h \
-    $(wildcard include/config/ARCH_HAS_ILOG2_U32) \
-    $(wildcard include/config/ARCH_HAS_ILOG2_U64) \
-  include/linux/math.h \
-  arch/x86/include/asm/div64.h \
-  include/asm-generic/div64.h \
-  include/linux/minmax.h \
+    $(wildcard include/config/MITIGATION_SRSO) \
+  include/linux/objtool_types.h \
+  include/asm-generic/bug.h \
+    $(wildcard include/config/BUG) \
+    $(wildcard include/config/GENERIC_BUG_RELATIVE_POINTERS) \
+  include/linux/once_lite.h \
   include/linux/panic.h \
     $(wildcard include/config/PANIC_TIMEOUT) \
   include/linux/printk.h \
@@ -199,17 +156,73 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
   include/asm-generic/qspinlock_types.h \
     $(wildcard include/config/NR_CPUS) \
   include/asm-generic/qrwlock_types.h \
+  arch/x86/include/uapi/asm/byteorder.h \
+  include/linux/byteorder/little_endian.h \
+  include/uapi/linux/byteorder/little_endian.h \
+  include/linux/swab.h \
+  include/uapi/linux/swab.h \
+  arch/x86/include/uapi/asm/swab.h \
+  include/linux/byteorder/generic.h \
   include/linux/lockdep_types.h \
     $(wildcard include/config/PROVE_RAW_LOCK_NESTING) \
     $(wildcard include/config/LOCKDEP) \
     $(wildcard include/config/LOCK_STAT) \
-  include/linux/once_lite.h \
   include/linux/dynamic_debug.h \
     $(wildcard include/config/JUMP_LABEL) \
   include/linux/jump_label.h \
     $(wildcard include/config/HAVE_ARCH_JUMP_LABEL_RELATIVE) \
   arch/x86/include/asm/jump_label.h \
     $(wildcard include/config/HAVE_JUMP_LABEL_HACK) \
+  arch/x86/include/asm/nops.h \
+  include/asm-generic/barrier.h \
+  arch/x86/include/asm/bitops.h \
+    $(wildcard include/config/X86_CMOV) \
+  arch/x86/include/asm/rmwcc.h \
+  include/linux/args.h \
+  include/asm-generic/bitops/sched.h \
+  arch/x86/include/asm/arch_hweight.h \
+  arch/x86/include/asm/cpufeatures.h \
+  arch/x86/include/asm/required-features.h \
+    $(wildcard include/config/X86_MINIMUM_CPU_FAMILY) \
+    $(wildcard include/config/MATH_EMULATION) \
+    $(wildcard include/config/X86_PAE) \
+    $(wildcard include/config/X86_CMPXCHG64) \
+    $(wildcard include/config/X86_P6_NOP) \
+    $(wildcard include/config/MATOM) \
+    $(wildcard include/config/PARAVIRT_XXL) \
+  arch/x86/include/asm/disabled-features.h \
+    $(wildcard include/config/X86_UMIP) \
+    $(wildcard include/config/X86_INTEL_MEMORY_PROTECTION_KEYS) \
+    $(wildcard include/config/X86_5LEVEL) \
+    $(wildcard include/config/MITIGATION_PAGE_TABLE_ISOLATION) \
+    $(wildcard include/config/MITIGATION_CALL_DEPTH_TRACKING) \
+    $(wildcard include/config/ADDRESS_MASKING) \
+    $(wildcard include/config/INTEL_IOMMU_SVM) \
+    $(wildcard include/config/X86_SGX) \
+    $(wildcard include/config/XEN_PV) \
+    $(wildcard include/config/INTEL_TDX_GUEST) \
+    $(wildcard include/config/X86_USER_SHADOW_STACK) \
+    $(wildcard include/config/X86_FRED) \
+    $(wildcard include/config/KVM_AMD_SEV) \
+  include/asm-generic/bitops/const_hweight.h \
+  include/asm-generic/bitops/instrumented-atomic.h \
+  include/linux/instrumented.h \
+  include/linux/kmsan-checks.h \
+    $(wildcard include/config/KMSAN) \
+  include/asm-generic/bitops/instrumented-non-atomic.h \
+    $(wildcard include/config/KCSAN_ASSUME_PLAIN_WRITES_ATOMIC) \
+  include/asm-generic/bitops/instrumented-lock.h \
+  include/asm-generic/bitops/le.h \
+  include/asm-generic/bitops/ext2-atomic-setbit.h \
+  include/linux/hex.h \
+  include/linux/kstrtox.h \
+  include/linux/log2.h \
+    $(wildcard include/config/ARCH_HAS_ILOG2_U32) \
+    $(wildcard include/config/ARCH_HAS_ILOG2_U64) \
+  include/linux/math.h \
+  arch/x86/include/asm/div64.h \
+  include/asm-generic/div64.h \
+  include/linux/minmax.h \
   include/linux/sprintf.h \
   include/linux/static_call_types.h \
     $(wildcard include/config/HAVE_STATIC_CALL) \
@@ -235,21 +248,9 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
     $(wildcard include/config/GENERIC_ENTRY) \
     $(wildcard include/config/HAVE_ARCH_WITHIN_STACK_FRAMES) \
     $(wildcard include/config/HARDENED_USERCOPY) \
-    $(wildcard include/config/BUG) \
     $(wildcard include/config/SH) \
   include/linux/bug.h \
-    $(wildcard include/config/GENERIC_BUG) \
     $(wildcard include/config/BUG_ON_DATA_CORRUPTION) \
-  arch/x86/include/asm/bug.h \
-    $(wildcard include/config/DEBUG_BUGVERBOSE) \
-  include/linux/instrumentation.h \
-    $(wildcard include/config/NOINSTR_VALIDATION) \
-  include/linux/objtool.h \
-    $(wildcard include/config/FRAME_POINTER) \
-    $(wildcard include/config/MITIGATION_SRSO) \
-  include/linux/objtool_types.h \
-  include/asm-generic/bug.h \
-    $(wildcard include/config/GENERIC_BUG_RELATIVE_POINTERS) \
   include/linux/restart_block.h \
   include/linux/errno.h \
   include/uapi/linux/errno.h \
@@ -333,7 +334,6 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
   arch/x86/include/asm/pgtable_64_types.h \
     $(wildcard include/config/DEBUG_KMAP_LOCAL_FORCE_MAP) \
   arch/x86/include/asm/sparsemem.h \
-    $(wildcard include/config/NUMA_KEEP_MEMINFO) \
   arch/x86/include/asm/nospec-branch.h \
     $(wildcard include/config/CALL_THUNKS_DEBUG) \
     $(wildcard include/config/MITIGATION_IBPB_ENTRY) \
@@ -341,8 +341,6 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
   arch/x86/include/asm/msr-index.h \
   arch/x86/include/asm/unwind_hints.h \
   arch/x86/include/asm/orc_types.h \
-  arch/x86/include/asm/asm-offsets.h \
-  include/generated/asm-offsets.h \
   arch/x86/include/asm/GEN-for-each-reg.h \
   arch/x86/include/asm/proto.h \
   arch/x86/include/uapi/asm/ldt.h \
@@ -386,6 +384,7 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
     $(wildcard include/config/SLAB_OBJ_EXT) \
   include/linux/numa.h \
     $(wildcard include/config/NODES_SHIFT) \
+    $(wildcard include/config/NUMA_KEEP_MEMINFO) \
     $(wildcard include/config/NUMA) \
     $(wildcard include/config/HAVE_ARCH_NODE_DEV_GROUP) \
   arch/x86/include/asm/frame.h \
@@ -423,6 +422,7 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
     $(wildcard include/config/AIO) \
     $(wildcard include/config/MMU_NOTIFIER) \
     $(wildcard include/config/TRANSPARENT_HUGEPAGE) \
+    $(wildcard include/config/SPLIT_PMD_PTLOCKS) \
     $(wildcard include/config/ARCH_WANT_BATCHED_UNMAP_TLB_FLUSH) \
     $(wildcard include/config/HUGETLB_PAGE) \
     $(wildcard include/config/IOMMU_MM_DATA) \
@@ -430,8 +430,6 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
     $(wildcard include/config/LRU_GEN_WALKS_MMU) \
     $(wildcard include/config/LRU_GEN) \
   include/linux/mm_types_task.h \
-    $(wildcard include/config/SPLIT_PTLOCK_CPUS) \
-    $(wildcard include/config/ARCH_ENABLE_SPLIT_PMD_PTLOCK) \
   arch/x86/include/asm/tlbbatch.h \
   include/linux/auxvec.h \
   include/uapi/linux/auxvec.h \
@@ -452,6 +450,7 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
     $(wildcard include/config/DEBUG_LOCKING_API_SELFTESTS) \
   include/linux/smp.h \
     $(wildcard include/config/UP_LATE_INIT) \
+    $(wildcard include/config/CSD_LOCK_WAIT_DEBUG) \
   include/linux/list.h \
     $(wildcard include/config/LIST_HARDENED) \
     $(wildcard include/config/DEBUG_LIST) \
@@ -467,13 +466,16 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
   include/asm-generic/mmiowb.h \
     $(wildcard include/config/MMIOWB) \
   include/linux/spinlock_types.h \
+  include/linux/rtmutex.h \
+    $(wildcard include/config/DEBUG_RT_MUTEXES) \
+  include/linux/rbtree_types.h \
   include/linux/rwlock_types.h \
+  include/linux/rwbase_rt.h \
   arch/x86/include/asm/spinlock.h \
   arch/x86/include/asm/qspinlock.h \
   include/asm-generic/qspinlock.h \
   arch/x86/include/asm/qrwlock.h \
   include/asm-generic/qrwlock.h \
-  include/linux/rwlock.h \
   include/linux/spinlock_api_smp.h \
     $(wildcard include/config/INLINE_SPIN_LOCK) \
     $(wildcard include/config/INLINE_SPIN_LOCK_BH) \
@@ -486,29 +488,11 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
     $(wildcard include/config/INLINE_SPIN_UNLOCK_IRQ) \
     $(wildcard include/config/INLINE_SPIN_UNLOCK_IRQRESTORE) \
     $(wildcard include/config/GENERIC_LOCKBREAK) \
-  include/linux/rwlock_api_smp.h \
-    $(wildcard include/config/INLINE_READ_LOCK) \
-    $(wildcard include/config/INLINE_WRITE_LOCK) \
-    $(wildcard include/config/INLINE_READ_LOCK_BH) \
-    $(wildcard include/config/INLINE_WRITE_LOCK_BH) \
-    $(wildcard include/config/INLINE_READ_LOCK_IRQ) \
-    $(wildcard include/config/INLINE_WRITE_LOCK_IRQ) \
-    $(wildcard include/config/INLINE_READ_LOCK_IRQSAVE) \
-    $(wildcard include/config/INLINE_WRITE_LOCK_IRQSAVE) \
-    $(wildcard include/config/INLINE_READ_TRYLOCK) \
-    $(wildcard include/config/INLINE_WRITE_TRYLOCK) \
-    $(wildcard include/config/INLINE_READ_UNLOCK) \
-    $(wildcard include/config/INLINE_WRITE_UNLOCK) \
-    $(wildcard include/config/INLINE_READ_UNLOCK_BH) \
-    $(wildcard include/config/INLINE_WRITE_UNLOCK_BH) \
-    $(wildcard include/config/INLINE_READ_UNLOCK_IRQ) \
-    $(wildcard include/config/INLINE_WRITE_UNLOCK_IRQ) \
-    $(wildcard include/config/INLINE_READ_UNLOCK_IRQRESTORE) \
-    $(wildcard include/config/INLINE_WRITE_UNLOCK_IRQRESTORE) \
+  include/linux/spinlock_rt.h \
+  include/linux/rwlock_rt.h \
   include/linux/refcount.h \
   include/linux/refcount_types.h \
   include/linux/rbtree.h \
-  include/linux/rbtree_types.h \
   include/linux/rcupdate.h \
     $(wildcard include/config/PREEMPT_RCU) \
     $(wildcard include/config/TINY_RCU) \
@@ -535,7 +519,6 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
   include/linux/rwsem.h \
     $(wildcard include/config/RWSEM_SPIN_ON_OWNER) \
     $(wildcard include/config/DEBUG_RWSEMS) \
-  include/linux/osq_lock.h \
   include/linux/completion.h \
   include/linux/swait.h \
   include/linux/wait.h \
@@ -546,6 +529,7 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
     $(wildcard include/config/TREE_SRCU) \
   include/linux/mutex.h \
     $(wildcard include/config/DEBUG_MUTEXES) \
+  include/linux/osq_lock.h \
   include/linux/debug_locks.h \
   include/linux/mutex_types.h \
     $(wildcard include/config/MUTEX_SPIN_ON_OWNER) \
@@ -585,6 +569,7 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
     $(wildcard include/config/MODULES) \
     $(wildcard include/config/MEM_ALLOC_PROFILING) \
     $(wildcard include/config/RANDOM_KMALLOC_CACHES) \
+    $(wildcard include/config/PAGE_SIZE_4KB) \
     $(wildcard include/config/NEED_PER_CPU_PAGE_FIRST_CHUNK) \
   include/linux/alloc_tag.h \
     $(wildcard include/config/MEM_ALLOC_PROFILING_DEBUG) \
@@ -606,6 +591,7 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
     $(wildcard include/config/UCLAMP_TASK) \
     $(wildcard include/config/UCLAMP_BUCKETS_COUNT) \
     $(wildcard include/config/KMAP_LOCAL) \
+    $(wildcard include/config/SCHED_CLASS_EXT) \
     $(wildcard include/config/CGROUP_SCHED) \
     $(wildcard include/config/BLK_DEV_IO_TRACE) \
     $(wildcard include/config/MEMCG_V1) \
@@ -698,6 +684,8 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
   arch/x86/include/generated/asm/kmap_size.h \
   include/asm-generic/kmap_size.h \
     $(wildcard include/config/DEBUG_KMAP_LOCAL) \
+  include/linux/sched/ext.h \
+    $(wildcard include/config/EXT_GROUP_SCHED) \
   include/linux/tracepoint-defs.h \
   include/vdso/time32.h \
   include/vdso/time.h \
@@ -737,9 +725,9 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
     $(wildcard include/config/IPV6_SIT) \
     $(wildcard include/config/IPV6_TUNNEL) \
     $(wildcard include/config/NETPOLL) \
-    $(wildcard include/config/XPS) \
     $(wildcard include/config/XDP_SOCKETS) \
     $(wildcard include/config/BQL) \
+    $(wildcard include/config/XPS) \
     $(wildcard include/config/SYSCTL) \
     $(wildcard include/config/RFS_ACCEL) \
     $(wildcard include/config/FCOE) \
@@ -918,25 +906,23 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
   include/linux/pageblock-flags.h \
     $(wildcard include/config/HUGETLB_PAGE_SIZE_VARIABLE) \
   include/linux/page-flags.h \
-    $(wildcard include/config/ARCH_USES_PG_UNCACHED) \
     $(wildcard include/config/PAGE_IDLE_FLAG) \
-    $(wildcard include/config/ARCH_USES_PG_ARCH_X) \
+    $(wildcard include/config/ARCH_USES_PG_ARCH_2) \
+    $(wildcard include/config/ARCH_USES_PG_ARCH_3) \
     $(wildcard include/config/HUGETLB_PAGE_OPTIMIZE_VMEMMAP) \
   include/linux/local_lock.h \
   include/linux/local_lock_internal.h \
   include/linux/zswap.h \
     $(wildcard include/config/ZSWAP) \
   include/linux/memory_hotplug.h \
-    $(wildcard include/config/HAVE_ARCH_NODEDATA_EXTENSION) \
     $(wildcard include/config/ARCH_HAS_ADD_PAGES) \
     $(wildcard include/config/MEMORY_HOTREMOVE) \
-  arch/x86/include/asm/mmzone.h \
-  arch/x86/include/asm/mmzone_64.h \
+  arch/x86/include/generated/asm/mmzone.h \
+  include/asm-generic/mmzone.h \
   include/linux/topology.h \
     $(wildcard include/config/USE_PERCPU_NUMA_NODE_ID) \
     $(wildcard include/config/SCHED_SMT) \
   include/linux/arch_topology.h \
-    $(wildcard include/config/ACPI_CPPC_LIB) \
     $(wildcard include/config/GENERIC_ARCH_TOPOLOGY) \
   arch/x86/include/asm/topology.h \
     $(wildcard include/config/X86_LOCAL_APIC) \
@@ -1065,6 +1051,8 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
     $(wildcard include/config/DEBUG_WX) \
     $(wildcard include/config/HAVE_ARCH_TRANSPARENT_HUGEPAGE_PUD) \
     $(wildcard include/config/ARCH_HAS_PTE_DEVMAP) \
+    $(wildcard include/config/ARCH_SUPPORTS_PMD_PFNMAP) \
+    $(wildcard include/config/ARCH_SUPPORTS_PUD_PFNMAP) \
     $(wildcard include/config/HAVE_ARCH_SOFT_DIRTY) \
     $(wildcard include/config/ARCH_ENABLE_THP_MIGRATION) \
     $(wildcard include/config/PAGE_TABLE_CHECK) \
@@ -1124,6 +1112,7 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
     $(wildcard include/config/KFENCE) \
     $(wildcard include/config/SLUB_TINY) \
     $(wildcard include/config/SLUB_DEBUG) \
+    $(wildcard include/config/SLAB_FREELIST_HARDENED) \
     $(wildcard include/config/SLAB_BUCKETS) \
   include/linux/percpu-refcount.h \
   include/linux/kasan.h \
@@ -1148,16 +1137,19 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
     $(wildcard include/config/HAVE_ARCH_MMAP_RND_COMPAT_BITS) \
     $(wildcard include/config/ARCH_USES_HIGH_VMA_FLAGS) \
     $(wildcard include/config/ARCH_HAS_PKEYS) \
-    $(wildcard include/config/PPC) \
+    $(wildcard include/config/ARCH_PKEY_BITS) \
     $(wildcard include/config/X86) \
+    $(wildcard include/config/PPC64) \
     $(wildcard include/config/PARISC) \
     $(wildcard include/config/SPARC64) \
     $(wildcard include/config/ARM64_MTE) \
     $(wildcard include/config/HAVE_ARCH_USERFAULTFD_MINOR) \
+    $(wildcard include/config/PPC32) \
     $(wildcard include/config/SHMEM) \
     $(wildcard include/config/MIGRATION) \
     $(wildcard include/config/ARCH_HAS_GIGANTIC_PAGE) \
     $(wildcard include/config/ARCH_HAS_PTE_SPECIAL) \
+    $(wildcard include/config/SPLIT_PTE_PTLOCKS) \
     $(wildcard include/config/HIGHPTE) \
     $(wildcard include/config/DEBUG_VM_RB) \
     $(wildcard include/config/PAGE_POISONING) \
@@ -1203,6 +1195,7 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
   include/linux/vm_event_item.h \
     $(wildcard include/config/MEMORY_BALLOON) \
     $(wildcard include/config/BALLOON_COMPACTION) \
+    $(wildcard include/config/DEBUG_STACK_USAGE) \
   include/asm-generic/cacheflush.h \
   include/linux/kmsan.h \
   include/linux/dma-direction.h \
@@ -1236,11 +1229,10 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
     $(wildcard include/config/DMA_NEED_SYNC) \
     $(wildcard include/config/NEED_DMA_MAP_STATE) \
   include/linux/device.h \
-    $(wildcard include/config/HAS_IOMEM) \
     $(wildcard include/config/GENERIC_MSI_IRQ) \
     $(wildcard include/config/ENERGY_MODEL) \
     $(wildcard include/config/PINCTRL) \
-    $(wildcard include/config/DMA_OPS) \
+    $(wildcard include/config/ARCH_HAS_DMA_OPS) \
     $(wildcard include/config/DMA_DECLARE_COHERENT) \
     $(wildcard include/config/DMA_CMA) \
     $(wildcard include/config/SWIOTLB) \
@@ -1249,6 +1241,7 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
     $(wildcard include/config/ARCH_HAS_SYNC_DMA_FOR_CPU) \
     $(wildcard include/config/ARCH_HAS_SYNC_DMA_FOR_CPU_ALL) \
     $(wildcard include/config/DMA_OPS_BYPASS) \
+    $(wildcard include/config/IOMMU_DMA) \
     $(wildcard include/config/PM_SLEEP) \
     $(wildcard include/config/DEVTMPFS) \
   include/linux/dev_printk.h \
@@ -1272,6 +1265,8 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
   include/linux/device/bus.h \
     $(wildcard include/config/ACPI) \
   include/linux/device/class.h \
+  include/linux/device/devres.h \
+    $(wildcard include/config/HAS_IOMEM) \
   include/linux/device/driver.h \
   include/linux/module.h \
     $(wildcard include/config/MODULES_TREE_LOOKUP) \
@@ -1318,7 +1313,6 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
   arch/x86/include/generated/asm/unistd_32_ia32.h \
   arch/x86/include/asm/compat.h \
   include/linux/sched/task_stack.h \
-    $(wildcard include/config/DEBUG_STACK_USAGE) \
   include/uapi/linux/magic.h \
   arch/x86/include/asm/user32.h \
   include/asm-generic/compat.h \
@@ -1332,7 +1326,6 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
   include/uapi/linux/elf-em.h \
   include/linux/moduleparam.h \
     $(wildcard include/config/ALPHA) \
-    $(wildcard include/config/PPC64) \
   include/linux/rbtree_latch.h \
   include/linux/error-injection.h \
   include/asm-generic/error-injection.h \
@@ -1503,13 +1496,6 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
   include/linux/bpf_types.h \
     $(wildcard include/config/NETFILTER_BPF_LINK) \
   include/uapi/linux/lsm.h \
-  include/linux/lsm/selinux.h \
-    $(wildcard include/config/SECURITY_SELINUX) \
-  include/linux/lsm/smack.h \
-    $(wildcard include/config/SECURITY_SMACK) \
-  include/linux/lsm/apparmor.h \
-    $(wildcard include/config/SECURITY_APPARMOR) \
-  include/linux/lsm/bpf.h \
   include/net/compat.h \
   include/uapi/linux/netlink.h \
   include/uapi/linux/netdevice.h \
@@ -1560,10 +1546,10 @@ deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_
   include/linux/usb/ch9.h \
   include/uapi/linux/usb/ch9.h \
   include/linux/pm_runtime.h \
-  /home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_motor/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ixxat_usb_core.h \
+  /home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ixxat_usb_core.h \
 
-/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_motor/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ixxat_usb_cl1.o: $(deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_motor/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ixxat_usb_cl1.o)
+/home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ixxat_usb_cl1.o: $(deps_/home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ixxat_usb_cl1.o)
 
-$(deps_/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_motor/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ixxat_usb_cl1.o):
+$(deps_/home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ixxat_usb_cl1.o):
 
-/home/racarla96/Documentos/ws_dev_ros2/src/ros2_control_caddy_ai2_traction_motor/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ixxat_usb_cl1.o: $(wildcard ./tools/objtool/objtool)
+/home/racarla96/ws_dev/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/drivers/ix_usb_can_2.0.520-REL/kernel/drivers/net/can/usb/ixxat_usb/ixxat_usb_cl1.o: $(wildcard ./tools/objtool/objtool)

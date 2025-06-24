@@ -1,20 +1,7 @@
 #include <linux/module.h>
-#define INCLUDE_VERMAGIC
-#include <linux/build-salt.h>
-#include <linux/elfnote-lto.h>
 #include <linux/export-internal.h>
-#include <linux/vermagic.h>
 #include <linux/compiler.h>
 
-#ifdef CONFIG_UNWINDER_ORC
-#include <asm/orc_header.h>
-ORC_HEADER;
-#endif
-
-BUILD_SALT;
-BUILD_LTO_INFO;
-
-MODULE_INFO(vermagic, VERMAGIC_STRING);
 MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
@@ -27,139 +14,71 @@ __section(".gnu.linkonce.this_module") = {
 	.arch = MODULE_ARCH_INIT,
 };
 
-#ifdef CONFIG_MITIGATION_RETPOLINE
-MODULE_INFO(retpoline, "Y");
-#endif
 
 
-
-static const char ____versions[]
-__used __section("__versions") =
-	"\x18\x00\x00\x00\xac\xd5\xa6\x21"
-	"usb_alloc_urb\0\0\0"
-	"\x18\x00\x00\x00\x16\xe8\x92\x1b"
-	"usb_anchor_urb\0\0"
-	"\x18\x00\x00\x00\x1e\x83\x0c\x65"
-	"usb_free_urb\0\0\0\0"
-	"\x1c\x00\x00\x00\x0c\xfc\x27\xe7"
-	"can_free_echo_skb\0\0\0"
-	"\x1c\x00\x00\x00\x91\xc9\xc5\x52"
-	"__kmalloc_noprof\0\0\0\0"
-	"\x1c\x00\x00\x00\x47\xf1\xb3\x1c"
-	"can_put_echo_skb\0\0\0\0"
-	"\x14\x00\x00\x00\xd7\x95\x00\x13"
-	"consume_skb\0"
-	"\x1c\x00\x00\x00\xbd\x31\xdf\xec"
-	"can_get_echo_skb\0\0\0\0"
-	"\x18\x00\x00\x00\x58\xba\x4d\x53"
-	"alloc_canfd_skb\0"
-	"\x1c\x00\x00\x00\xe8\x75\xa3\xef"
-	"usb_register_driver\0"
-	"\x10\x00\x00\x00\xba\x0c\x7a\x03"
-	"kfree\0\0\0"
-	"\x20\x00\x00\x00\x0b\x05\xdb\x34"
-	"_raw_spin_lock_irqsave\0\0"
-	"\x14\x00\x00\x00\xb6\xdd\x4f\xb9"
-	"open_candev\0"
-	"\x14\x00\x00\x00\x25\x71\xff\x98"
-	"netdev_err\0\0"
-	"\x14\x00\x00\x00\xbb\x6d\xfb\xbd"
-	"__fentry__\0\0"
-	"\x18\x00\x00\x00\x3d\x46\xb2\x33"
-	"dev_addr_mod\0\0\0\0"
-	"\x24\x00\x00\x00\x97\x70\x48\x65"
-	"__x86_indirect_thunk_rax\0\0\0\0"
-	"\x10\x00\x00\x00\x7e\x3a\x2c\x12"
-	"_printk\0"
-	"\x1c\x00\x00\x00\xcb\xf6\xfd\xf0"
-	"__stack_chk_fail\0\0\0\0"
-	"\x18\x00\x00\x00\x2d\x62\x3b\x65"
-	"alloc_can_skb\0\0\0"
-	"\x20\x00\x00\x00\xe1\x8a\x2c\x96"
-	"usb_kill_anchored_urbs\0\0"
-	"\x1c\x00\x00\x00\x2d\xfe\xf4\x1c"
-	"netif_device_detach\0"
-	"\x1c\x00\x00\x00\xea\xd9\xcb\x4b"
-	"unregister_candev\0\0\0"
-	"\x18\x00\x00\x00\xf3\xe8\xf3\x11"
-	"usb_submit_urb\0\0"
-	"\x14\x00\x00\x00\xb0\x75\x9e\x71"
-	"_dev_info\0\0\0"
-	"\x18\x00\x00\x00\x7a\xb0\x2b\x0f"
-	"can_change_mtu\0\0"
-	"\x28\x00\x00\x00\xb3\x1c\xa2\x87"
-	"__ubsan_handle_out_of_bounds\0\0\0\0"
-	"\x20\x00\x00\x00\xb6\x2b\xc6\x78"
-	"can_dropped_invalid_skb\0"
-	"\x14\x00\x00\x00\x38\x24\xc3\xb0"
-	"_dev_err\0\0\0\0"
-	"\x14\x00\x00\x00\x68\x98\x46\x1e"
-	"free_candev\0"
-	"\x1c\x00\x00\x00\x16\xc9\xf0\x2e"
-	"sk_skb_reason_drop\0\0"
-	"\x1c\x00\x00\x00\x77\xed\xb1\xf8"
-	"alloc_candev_mqs\0\0\0\0"
-	"\x18\x00\x00\x00\xe6\xed\x47\x60"
-	"can_fd_len2dlc\0\0"
-	"\x1c\x00\x00\x00\x63\xa5\x03\x4c"
-	"random_kmalloc_seed\0"
-	"\x18\x00\x00\x00\x6d\xa1\x26\x97"
-	"netdev_printk\0\0\0"
-	"\x18\x00\x00\x00\xcd\x71\x07\x58"
-	"usb_control_msg\0"
-	"\x18\x00\x00\x00\x87\x93\x2d\xf1"
-	"can_fd_dlc2len\0\0"
-	"\x1c\x00\x00\x00\x62\x43\x8a\xfa"
-	"sysfs_create_group\0\0"
-	"\x18\x00\x00\x00\x55\xd5\xa4\xe2"
-	"usb_deregister\0\0"
-	"\x18\x00\x00\x00\xb5\x79\xca\x75"
-	"__fortify_panic\0"
-	"\x24\x00\x00\x00\x70\xce\x5c\xd3"
-	"_raw_spin_unlock_irqrestore\0"
-	"\x1c\x00\x00\x00\x7c\x17\x1d\xf2"
-	"netif_tx_wake_queue\0"
-	"\x18\x00\x00\x00\xa5\x46\x09\x72"
-	"close_candev\0\0\0\0"
-	"\x1c\x00\x00\x00\xca\x39\x82\x5b"
-	"__x86_return_thunk\0\0"
-	"\x20\x00\x00\x00\x54\xea\xa5\xd9"
-	"__init_waitqueue_head\0\0\0"
-	"\x14\x00\x00\x00\x8a\x32\x40\xe8"
-	"netif_rx\0\0\0\0"
-	"\x14\x00\x00\x00\x93\x19\xd1\xe8"
-	"can_bus_off\0"
-	"\x1c\x00\x00\x00\x1d\x95\x91\xa0"
-	"usb_unanchor_urb\0\0\0\0"
-	"\x10\x00\x00\x00\xa6\x50\xba\x15"
-	"jiffies\0"
-	"\x1c\x00\x00\x00\xb6\x2c\xb1\xfc"
-	"sysfs_remove_group\0\0"
-	"\x10\x00\x00\x00\xfd\xf9\x3f\x3c"
-	"sprintf\0"
-	"\x2c\x00\x00\x00\x61\xe5\x48\xa6"
-	"__ubsan_handle_shift_out_of_bounds\0\0"
-	"\x20\x00\x00\x00\xee\xfb\xb4\x10"
-	"__kmalloc_cache_noprof\0\0"
-	"\x18\x00\x00\x00\x18\x01\x47\x56"
-	"__warn_printk\0\0\0"
-	"\x1c\x00\x00\x00\xda\x4b\xed\x92"
-	"alloc_can_err_skb\0\0\0"
-	"\x2c\x00\x00\x00\xc6\xfa\xb1\x54"
-	"__ubsan_handle_load_invalid_value\0\0\0"
-	"\x18\x00\x00\x00\x46\xc4\x9a\x9a"
-	"register_candev\0"
-	"\x10\x00\x00\x00\xf9\x82\xa4\xf9"
-	"msleep\0\0"
-	"\x20\x00\x00\x00\x12\xda\xf0\xc4"
-	"ktime_get_with_offset\0\0\0"
-	"\x18\x00\x00\x00\xaf\xfc\x16\x7b"
-	"kmalloc_caches\0\0"
-	"\x14\x00\x00\x00\x1d\xce\x26\x6f"
-	"netdev_info\0"
-	"\x18\x00\x00\x00\xde\x9f\x8a\x25"
-	"module_layout\0\0\0"
-	"\x00\x00\x00\x00\x00\x00\x00\x00";
+static const struct modversion_info ____versions[]
+__used __section("__versions") = {
+	{ 0x3495aea1, "usb_alloc_urb" },
+	{ 0xca4c86e6, "usb_anchor_urb" },
+	{ 0xe38dc5d, "usb_free_urb" },
+	{ 0x60954ec1, "can_free_echo_skb" },
+	{ 0x52c5c991, "__kmalloc_noprof" },
+	{ 0x78eb8908, "can_put_echo_skb" },
+	{ 0x8133b342, "consume_skb" },
+	{ 0xb542635f, "can_get_echo_skb" },
+	{ 0xd6ddecf3, "alloc_canfd_skb" },
+	{ 0xecebd217, "rt_mutex_base_init" },
+	{ 0x3c9eea37, "usb_register_driver" },
+	{ 0x37a0cba, "kfree" },
+	{ 0x838abbd4, "open_candev" },
+	{ 0xfb4d8f7b, "netdev_err" },
+	{ 0xbdfb6dbb, "__fentry__" },
+	{ 0x7510ee16, "dev_addr_mod" },
+	{ 0x65487097, "__x86_indirect_thunk_rax" },
+	{ 0x122c3a7e, "_printk" },
+	{ 0xf0fdf6cb, "__stack_chk_fail" },
+	{ 0x61a8bcf9, "alloc_can_skb" },
+	{ 0xc690a605, "usb_kill_anchored_urbs" },
+	{ 0x20ce51e7, "netif_device_detach" },
+	{ 0x7f298afe, "unregister_candev" },
+	{ 0x472b942f, "usb_submit_urb" },
+	{ 0x29d5172d, "_dev_info" },
+	{ 0xbd406005, "can_change_mtu" },
+	{ 0x2064999, "can_dropped_invalid_skb" },
+	{ 0x8122b572, "_dev_err" },
+	{ 0xe923430, "free_candev" },
+	{ 0x6bee6f5f, "sk_skb_reason_drop" },
+	{ 0x983b66f, "alloc_candev_mqs" },
+	{ 0x6047ede6, "can_fd_len2dlc" },
+	{ 0x4c03a563, "random_kmalloc_seed" },
+	{ 0xd4b5dbda, "netdev_printk" },
+	{ 0xc74e311a, "usb_control_msg" },
+	{ 0xf12d9387, "can_fd_dlc2len" },
+	{ 0x5612c21b, "sysfs_create_group" },
+	{ 0xd81e32d2, "usb_deregister" },
+	{ 0x75ca79b5, "__fortify_panic" },
+	{ 0x191b8713, "netif_tx_wake_queue" },
+	{ 0xcdb04e45, "close_candev" },
+	{ 0x5b8239ca, "__x86_return_thunk" },
+	{ 0xf73ec46f, "__init_waitqueue_head" },
+	{ 0xe8c35af5, "netif_rx" },
+	{ 0xcefc199b, "can_bus_off" },
+	{ 0x59e74729, "usb_unanchor_urb" },
+	{ 0x37af18f3, "rt_spin_unlock" },
+	{ 0xc4a0ca38, "rt_spin_lock" },
+	{ 0x15ba50a6, "jiffies" },
+	{ 0xaa14de9, "sysfs_remove_group" },
+	{ 0x3c3ff9fd, "sprintf" },
+	{ 0x95603802, "__kmalloc_cache_noprof" },
+	{ 0x56470118, "__warn_printk" },
+	{ 0xe1cd60ee, "alloc_can_err_skb" },
+	{ 0x3c5deaf4, "register_candev" },
+	{ 0xf9a482f9, "msleep" },
+	{ 0xc4f0da12, "ktime_get_with_offset" },
+	{ 0xbc2fdd78, "kmalloc_caches" },
+	{ 0x607cf71d, "netdev_info" },
+	{ 0xe8786a6a, "module_layout" },
+};
 
 MODULE_INFO(depends, "can-dev");
 

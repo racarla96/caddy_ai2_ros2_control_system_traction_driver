@@ -2,11 +2,11 @@ import re
 from collections import defaultdict
 import statistics
 
-line_re = re.compile(r"\(([\d\.]+)\)\s+\w+\s+([0-9A-Fa-f]+)\s")
+line_re = re.compile(r"\(([\d\.]+)\)\s+\w+\s+([0-9A-Fa-f]+)#")
 timestamps_by_id = defaultdict(list)
 unmatched_lines = 0
 
-with open("candump-2025_05_19_test2_conector_rojo.log", "r") as f:
+with open("candump-2025-06-06_095231.log", "r") as f:
     for line in f:
         match = line_re.search(line)
         if match:
