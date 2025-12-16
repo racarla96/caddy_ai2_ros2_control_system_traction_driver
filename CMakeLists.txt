@@ -1,14 +1,14 @@
+# Copyright (c) 2025 Rafael Carbonell Lázaro (racarla96)
+# Licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0)
+# See: https://creativecommons.org/licenses/by/4.0/
+
 cmake_minimum_required(VERSION 3.16)
-project(caddy_ai2_ros2_control_hardware_curtis_motor_driver LANGUAGES CXX)
+project(caddy_ai2_ros2_control_system_traction_driver LANGUAGES CXX)
 
 # Establecer el estándar C++20 para todo el proyecto
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
-
-#find_package(ros2_control_cmake REQUIRED)
-#set_compiler_options()
-# export_windows_symbols()
+set(CMAKE_CXX_EXTENSIONS ON)
 
 # find dependencies
 set(THIS_PACKAGE_INCLUDE_DEPENDS
@@ -29,28 +29,30 @@ endif()
 # find dependencies
 find_package(backward_ros REQUIRED)
 find_package(ament_cmake REQUIRED)
+find_package(caddy_ai2_ros2_common REQUIRED)
 foreach(Dependency IN ITEMS ${THIS_PACKAGE_INCLUDE_DEPENDS})
   find_package(${Dependency} REQUIRED)
 endforeach()
 
 ## COMPILE
 add_library(
-  caddy_ai2_ros2_control_hardware_curtis_motor_driver
+  ${PROJECT_NAME}
   SHARED
-  hardware/src/curtis_motor_hardware_interface.cpp
-  hardware/src/curtis_motor_driver.cpp
-  hardware/src/socket_can_interface.cpp
+  src/system_traction_hardware.cpp
+  src/traction_driver.cpp
 )
-# target_include_directories(caddy_ai2_ros2_control_hardware_curtis_motor_driver PUBLIC
-# $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/hardware/include>
-# $<INSTALL_INTERFACE:include/caddy_ai2_ros2_control_hardware_curtis_motor_driver>
-# )
+
 target_include_directories(${PROJECT_NAME} PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/hardware/include>
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>
 )
 
-target_link_libraries(caddy_ai2_ros2_control_hardware_curtis_motor_driver PUBLIC
+# Add caddy_ai2_ros2_common headers
+target_include_directories(${PROJECT_NAME} PUBLIC
+  ${caddy_ai2_ros2_common_INCLUDE_DIRS}
+)
+
+target_link_libraries(${PROJECT_NAME} PUBLIC
   hardware_interface::hardware_interface
   pluginlib::pluginlib
   rclcpp::rclcpp
@@ -62,34 +64,31 @@ pluginlib_export_plugin_description_file(hardware_interface hardware_interface_p
 
 # INSTALL
 install(
-  DIRECTORY hardware/include/
-  DESTINATION include/caddy_ai2_ros2_control_hardware_curtis_motor_driver
+  DIRECTORY include/
+  DESTINATION include/${PROJECT_NAME}
 )
+
 install(
-  # DIRECTORY description/launch description/ros2_control description/urdf
-  DIRECTORY description/ros2_control description/urdf
-  DESTINATION share/caddy_ai2_ros2_control_hardware_curtis_motor_driver
+  DIRECTORY description bringup scripts
+  DESTINATION share/${PROJECT_NAME}
 )
-install(
-  DIRECTORY bringup/launch bringup/config
-  DESTINATION share/caddy_ai2_ros2_control_hardware_curtis_motor_driver
-)
-install(TARGETS caddy_ai2_ros2_control_hardware_curtis_motor_driver
-  EXPORT caddy_ai2_ros2_control_hardware_curtis_motor_driver
-  ARCHIVE DESTINATION lib
+
+install(TARGETS ${PROJECT_NAME}
+  EXPORT export_${PROJECT_NAME}
   LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
   RUNTIME DESTINATION bin
+  INCLUDES DESTINATION include
 )
 
-# if(BUILD_TESTING)
-#   find_package(ament_cmake_pytest REQUIRED)
-
-#   ament_add_pytest_test(example_2_urdf_xacro test/test_urdf_xacro.py)
-#   ament_add_pytest_test(view_example_2_launch test/test_view_robot_launch.py)
-#   ament_add_pytest_test(run_example_2_launch test/test_diffbot_launch.py)
-# endif()
+# Install scripts with executable permissions
+install(PROGRAMS
+  scripts/setup_can_trac_drv.sh 
+  scripts/setup_vcan_trac_drv.sh
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 ## EXPORTS
-ament_export_targets(caddy_ai2_ros2_control_hardware_curtis_motor_driver HAS_LIBRARY_TARGET)
+ament_export_targets(export_${PROJECT_NAME} HAS_LIBRARY_TARGET)
 ament_export_dependencies(${THIS_PACKAGE_INCLUDE_DEPENDS})
 ament_package()

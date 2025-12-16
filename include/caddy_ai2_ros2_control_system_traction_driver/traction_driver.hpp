@@ -1,11 +1,21 @@
-#ifndef CURTIS_MOTOR_DRIVER_H
-#define CURTIS_MOTOR_DRIVER_H
+#pragma once
 
 #include <linux/can.h>
 #include <vector>
 #include <cstdint>
 #include <chrono>
 #include <string>
+#include <cstring>
+#include <iostream>
+
+#include "caddy_ai2_ros2_common/socket_can_interface.hpp"
+
+/*
+    Description:
+    This class is a wrapper for the Curtis Motor Driver.
+    It is used to control the Curtis Motor Driver used as traction system
+    of the Caddy AI2.
+*/
 
 using namespace std;
 
@@ -30,10 +40,10 @@ using namespace std;
 #define FRAME_726 0x726 // When communication is not established
     // Motor data
 
-class CurtisMotorDriver {
+class TractionDriver {
 public:
-    CurtisMotorDriver(bool verbose = false);
-    ~CurtisMotorDriver();
+    TractionDriver(bool verbose = false);
+    ~TractionDriver();
 
     static constexpr int FRAME_226_ = FRAME_226;
     static constexpr int FRAME_227_ = FRAME_227;
@@ -124,5 +134,3 @@ private:
     uint64_t last_update_0x2A6_frame_ = 0;
     // uint64_t last_update_0x726_frame_ = 0;
 };
-
-#endif // CURTIS_MOTOR_DRIVER_H

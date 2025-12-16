@@ -1,8 +1,4 @@
-#ifndef CURTIS_MOTOR_HARDWARE_INTERFACE_HPP_
-#define CURTIS_MOTOR_HARDWARE_INTERFACE_HPP_
-
-#include "caddy_ai2_ros2_control_hardware_curtis_motor_driver/curtis_motor_driver.hpp"
-#include "caddy_ai2_ros2_control_hardware_curtis_motor_driver/socket_can_interface.hpp"
+#pragma once
 
 #include <memory>
 #include <string>
@@ -20,6 +16,9 @@
 #include "rclcpp_lifecycle/node_interfaces/lifecycle_node_interface.hpp"
 #include "rclcpp_lifecycle/state.hpp"
 
+#include "caddy_ai2_ros2_common/socket_can_interface.hpp"
+#include "caddy_ai2_ros2_control_system_traction_driver/traction_driver.hpp"
+
 #define MAX_RPM 4300.0
 #define GEAR_RATIO 16.0
 #define WHEEL_DIAMETER_M 0.5 // m
@@ -27,14 +26,14 @@
 #define RECOVER_TIME 5 // secs
 #define WATCHDOG_TIMEOUT 0.2 // secs
 
-namespace caddy_ai2_ros2_control_hardware_curtis_motor_driver
+namespace caddy_ai2_ros2_control_system_traction_driver
 {
-class CurtisMotorHardwareInterface : public hardware_interface::ActuatorInterface
+class SystemTractionHardwareInterface : public hardware_interface::ActuatorInterface
 {
 public:
-  RCLCPP_SHARED_PTR_DEFINITIONS(CurtisMotorHardwareInterface)
+  RCLCPP_SHARED_PTR_DEFINITIONS(SystemTractionHardwareInterface)
 
-  hardware_interface::CallbackReturn on_init(const hardware_interface::HardwareInfo & info) override;
+  hardware_interface::CallbackReturn on_init(const hardware_interface::HardwareComponentInterfaceParams& params) override;
 
   hardware_interface::CallbackReturn on_configure(const rclcpp_lifecycle::State & previous_state) override;
 
@@ -51,6 +50,20 @@ public:
   hardware_interface::return_type write(const rclcpp::Time & time, const rclcpp::Duration & period) override;
 
 private:
+  // Estructura esperada de state_interfaces
+  const std::vector<std::string> expected_state_interfaces = {
+    "velocity",
+    "motor_rpm",
+    "current_rms",
+    "battery_current",
+    "battery_voltage",
+    "interlock",
+    "on_fault",
+    "mode_auto",
+    "mode_manual",
+    "fault_code",
+  };
+
   // Parameters
   std::string can_interface_name_;
   bool verbose_;
@@ -68,9 +81,7 @@ private:
 
   // Hardware
   std::unique_ptr<SocketCANInterface> can_interface_;
-  std::unique_ptr<CurtisMotorDriver> curtis_driver_;
+  std::unique_ptr<TractionDriver> traction_driver_;
 };
 
-}  // namespace caddy_ai2_ros2_control_hardware_curtis_motor_driver
-
-#endif  // CURTIS_MOTOR_HARDWARE_INTERFACE_HPP_
+}  // namespace caddy_ai2_ros2_control_system_traction_driver

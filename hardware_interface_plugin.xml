@@ -1,6 +1,6 @@
-<library path="caddy_ai2_ros2_control_hardware_curtis_motor_driver">
-  <class name="caddy_ai2_ros2_control_hardware_curtis_motor_driver/CurtisMotorHardwareInterface"
-         type="caddy_ai2_ros2_control_hardware_curtis_motor_driver::CurtisMotorHardwareInterface"
+<library path="caddy_ai2_ros2_control_system_traction_driver">
+  <class name="caddy_ai2_ros2_control_system_traction_driver/TractionHardwareInterface"
+         type="caddy_ai2_ros2_control_system_traction_driver::TractionHardwareInterface"
          base_class_type="hardware_interface::ActuatorInterface">
     <description>
       ROS2 Control hardware interface for Curtis motor driver using CAN communication.

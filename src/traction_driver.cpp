@@ -1,22 +1,20 @@
-#include "caddy_ai2_ros2_control_hardware_curtis_motor_driver/curtis_motor_driver.hpp"
-#include <cstring>
-#include <iostream>
+#include "caddy_ai2_ros2_control_system_traction_driver/traction_driver.hpp"
 
-CurtisMotorDriver::CurtisMotorDriver(bool verbose)
+TractionDriver::TractionDriver(bool verbose)
 :   verbose_(verbose)
 {
     if (verbose_) {
-        std::cout << "CurtisMotorDriver initialized with verbose mode enabled." << std::endl;
+        std::cout << "TractionDriver initialized with verbose mode enabled." << std::endl;
     }
 }
 
-CurtisMotorDriver::~CurtisMotorDriver() {
+TractionDriver::~TractionDriver() {
     if (verbose_) {
-        std::cout << "CurtisMotorDriver destroyed." << std::endl;
+        std::cout << "TractionDriver destroyed." << std::endl;
     }
 }
 
-std::vector<bool> CurtisMotorDriver::process_frames(const std::vector<struct can_frame>& frames) {
+std::vector<bool> TractionDriver::process_frames(const std::vector<struct can_frame>& frames) {
     if (verbose_) {
         std::cout << "Processing " << frames.size() << " CAN frames." << std::endl;
     }
@@ -79,7 +77,7 @@ std::vector<bool> CurtisMotorDriver::process_frames(const std::vector<struct can
  * @param frame The CAN frame to process.
  * @return true if the frame was successfully processed, false otherwise.
  */
-bool CurtisMotorDriver::process_0x227_frame(const struct can_frame& frame) {
+bool TractionDriver::process_0x227_frame(const struct can_frame& frame) {
     if (verbose_) {
         std::cout << "Processing frame with ID 0x227." << std::endl;
     }
@@ -126,7 +124,7 @@ bool CurtisMotorDriver::process_0x227_frame(const struct can_frame& frame) {
  * @return true if the frame was successfully processed, false otherwise.
  */
 /*
-bool CurtisMotorDriver::process_0x327_frame(const struct can_frame& frame) {
+bool TractionDriver::process_0x327_frame(const struct can_frame& frame) {
     if (verbose_) {
         std::cout << "Processing frame with ID 0x327." << std::endl;
     }
@@ -167,7 +165,7 @@ bool CurtisMotorDriver::process_0x327_frame(const struct can_frame& frame) {
  * @param frame The CAN frame to process.
  * @return true if the frame was successfully processed, false otherwise.
  */
-bool CurtisMotorDriver::process_0x1A6_frame(const struct can_frame& frame) {
+bool TractionDriver::process_0x1A6_frame(const struct can_frame& frame) {
     if (verbose_) {
         std::cout << "Processing frame with ID 0x1A6." << std::endl;
     }
@@ -221,7 +219,7 @@ bool CurtisMotorDriver::process_0x1A6_frame(const struct can_frame& frame) {
  * @param frame The CAN frame to process.
  * @return true if the frame was successfully processed, false otherwise.
  */
-bool CurtisMotorDriver::process_0x2A6_frame(const struct can_frame& frame) {
+bool TractionDriver::process_0x2A6_frame(const struct can_frame& frame) {
     if (verbose_) {
         std::cout << "Processing frame with ID 0x2A6." << std::endl;
     }
@@ -271,7 +269,7 @@ bool CurtisMotorDriver::process_0x2A6_frame(const struct can_frame& frame) {
  * @return true if the frame was successfully processed, false otherwise.
  */
 /*
-bool CurtisMotorDriver::process_0x726_frame(const struct can_frame& frame) {
+bool TractionDriver::process_0x726_frame(const struct can_frame& frame) {
     if (verbose_) {
         std::cout << "Processing frame with ID 0x726." << std::endl;
     }
@@ -292,7 +290,7 @@ bool CurtisMotorDriver::process_0x726_frame(const struct can_frame& frame) {
 }
 */
 
-bool CurtisMotorDriver::create_0x226_frame(struct can_frame* frame, int throttle_value, bool reset) {
+bool TractionDriver::create_0x226_frame(struct can_frame* frame, int throttle_value, bool reset) {
     if (verbose_) {
         std::cout << "Sending throttle command. Throttle value: " << throttle_value << ", Reset: " << reset << std::endl;
     }
@@ -325,7 +323,7 @@ bool CurtisMotorDriver::create_0x226_frame(struct can_frame* frame, int throttle
     return true;
 }
 
-std::string CurtisMotorDriver::getFaultString(uint8_t fault_code) {
+std::string TractionDriver::getFaultString(uint8_t fault_code) {
 
 	switch(fault_code){
 		case 38:

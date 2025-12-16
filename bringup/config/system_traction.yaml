@@ -2,14 +2,13 @@ controller_manager:
   ros__parameters:
     update_rate: 250  # Hz
 
-    curtis_motor_velocity_controller:
+    system_traction_velocity_controller:
       type: velocity_controllers/JointGroupVelocityController
 
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
-curtis_motor_velocity_controller:
+system_traction_velocity_controller:
   ros__parameters:
-    # update_rate: 25  # Hz Creo que no funciona
     joints:
-      - curtis_motor_joint
+      - system_traction_joint

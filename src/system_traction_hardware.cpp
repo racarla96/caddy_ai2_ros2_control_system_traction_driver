@@ -1,4 +1,4 @@
-#include "caddy_ai2_ros2_control_hardware_curtis_motor_driver/curtis_motor_hardware_interface.hpp"
+#include "caddy_ai2_ros2_control_system_traction_driver/system_traction_hardware.hpp"
 
 #include <chrono>
 #include <cmath>
@@ -10,13 +10,13 @@
 #include "hardware_interface/types/hardware_interface_type_values.hpp"
 #include "rclcpp/rclcpp.hpp"
 
-namespace caddy_ai2_ros2_control_hardware_curtis_motor_driver
+namespace caddy_ai2_ros2_control_system_traction_driver
 {
 
-hardware_interface::CallbackReturn CurtisMotorHardwareInterface::on_init(
-  const hardware_interface::HardwareInfo & info)
+hardware_interface::CallbackReturn SystemTractionHardwareInterface::on_init(
+  const hardware_interface::HardwareComponentInterfaceParams & params)
 {
-  if (hardware_interface::ActuatorInterface::on_init(info) != hardware_interface::CallbackReturn::SUCCESS)
+  if (hardware_interface::ActuatorInterface::on_init(params) != hardware_interface::CallbackReturn::SUCCESS)
   {
     return hardware_interface::CallbackReturn::ERROR;
   }
@@ -34,22 +34,10 @@ hardware_interface::CallbackReturn CurtisMotorHardwareInterface::on_init(
 
   control_rate_write_loop_counts = static_cast<int>(std::floor(update_rate_hz_ / control_rate_hz_));
 
-  RCLCPP_INFO(get_logger(), "Initializing Curtis Motor Hardware Interface with CAN interface: %s", can_interface_name_.c_str());
+  RCLCPP_INFO(get_logger(), "Initializing System Traction Hardware Interface with CAN interface: %s", can_interface_name_.c_str());
   RCLCPP_INFO(get_logger(), "Update rate: %.2f Hz", update_rate_hz_);
 
-  // Estructura esperada de state_interfaces
-  const std::vector<std::string> expected_state_interfaces = {
-    "velocity",
-    "motor_rpm",
-    "current_rms",
-    "battery_current",
-    "battery_voltage",
-    "interlock",
-    "on_fault",
-    "mode_auto",
-    "mode_manual",
-    "fault_code",
-  };
+
 
   for (const hardware_interface::ComponentInfo & joint : info_.joints)
   {
@@ -89,12 +77,12 @@ hardware_interface::CallbackReturn CurtisMotorHardwareInterface::on_init(
   return hardware_interface::CallbackReturn::SUCCESS;
 }
 
-hardware_interface::CallbackReturn CurtisMotorHardwareInterface::on_configure(
+hardware_interface::CallbackReturn SystemTractionHardwareInterface::on_configure(
   const rclcpp_lifecycle::State & /*previous_state*/)
 {
   // Initialize CAN interface and Curtis driver
   can_interface_ = std::make_unique<SocketCANInterface>(can_interface_name_);
-  curtis_driver_ = std::make_unique<CurtisMotorDriver>();
+  traction_driver_ = std::make_unique<TractionDriver>();
 
   // reset values always when configuring hardware
   for (const auto & [name, descr] : joint_state_interfaces_)
@@ -110,7 +98,7 @@ hardware_interface::CallbackReturn CurtisMotorHardwareInterface::on_configure(
   return hardware_interface::CallbackReturn::SUCCESS;
 }
 
-hardware_interface::CallbackReturn CurtisMotorHardwareInterface::on_cleanup(
+hardware_interface::CallbackReturn SystemTractionHardwareInterface::on_cleanup(
   const rclcpp_lifecycle::State & /*previous_state*/)
 {
   
@@ -119,7 +107,7 @@ hardware_interface::CallbackReturn CurtisMotorHardwareInterface::on_cleanup(
   return hardware_interface::CallbackReturn::SUCCESS;
 }
 
-hardware_interface::CallbackReturn CurtisMotorHardwareInterface::on_activate(
+hardware_interface::CallbackReturn SystemTractionHardwareInterface::on_activate(
   const rclcpp_lifecycle::State & /*previous_state*/)
 {
   // Initialize CAN interface
@@ -133,34 +121,34 @@ hardware_interface::CallbackReturn CurtisMotorHardwareInterface::on_activate(
 
 
   // Enviamos un mensaje de reset al controlador y esperamos a que se inicialice
-  curtis_driver_->create_0x226_frame(&throttle_frame_, 0, true);
+  traction_driver_->create_0x226_frame(&throttle_frame_, 0, true);
   can_interface_->write(throttle_frame_);
   std::this_thread::sleep_for(std::chrono::seconds(RECOVER_TIME)); // Wait for controller to initialize
 
   return hardware_interface::CallbackReturn::SUCCESS;
 }
 
-hardware_interface::CallbackReturn CurtisMotorHardwareInterface::on_deactivate(
+hardware_interface::CallbackReturn SystemTractionHardwareInterface::on_deactivate(
   const rclcpp_lifecycle::State & /*previous_state*/)
 {
   // Send zero throttle command to stop the motor
-  curtis_driver_->create_0x226_frame(&throttle_frame_, 0, false);
+  traction_driver_->create_0x226_frame(&throttle_frame_, 0, false);
   can_interface_->write(throttle_frame_);
 
   return hardware_interface::CallbackReturn::SUCCESS;
 }
 
-hardware_interface::CallbackReturn CurtisMotorHardwareInterface::on_error(
+hardware_interface::CallbackReturn SystemTractionHardwareInterface::on_error(
   const rclcpp_lifecycle::State & /*previous_state*/)
 {
   // Send zero throttle command to stop the motor
-  curtis_driver_->create_0x226_frame(&throttle_frame_, 0, false);
+  traction_driver_->create_0x226_frame(&throttle_frame_, 0, false);
   can_interface_->write(throttle_frame_);
   
   return hardware_interface::CallbackReturn::ERROR;
 }
 
-hardware_interface::return_type CurtisMotorHardwareInterface::read(
+hardware_interface::return_type SystemTractionHardwareInterface::read(
   const rclcpp::Time & /*time*/, const rclcpp::Duration & /*period*/)
 {
 
@@ -176,25 +164,25 @@ hardware_interface::return_type CurtisMotorHardwareInterface::read(
   
   if (num_frames > 0) {
     // Process frames and update internal data
-    std::vector<bool> processed = curtis_driver_->process_frames(frames);
+    std::vector<bool> processed = traction_driver_->process_frames(frames);
     
     for(int i = 0; i < num_frames; ++i) {
       if (processed[i]) {
-        if (frames[i].can_id == curtis_driver_->FRAME_227_) {
-          set_state(info_.joints[0].name + "/" + "motor_rpm", curtis_driver_->get_motor_rpm());
-          set_state(info_.joints[0].name + "/" + "velocity", curtis_driver_->get_speed());
+        if (frames[i].can_id == traction_driver_->FRAME_227_) {
+          set_state(info_.joints[0].name + "/" + "motor_rpm", traction_driver_->get_motor_rpm());
+          set_state(info_.joints[0].name + "/" + "velocity", traction_driver_->get_speed());
         }
-        else if (frames[i].can_id == curtis_driver_->FRAME_1A6_) {
-          set_state(info_.joints[0].name + "/" + "current_rms", curtis_driver_->get_current_rms());
-          set_state(info_.joints[0].name + "/" + "battery_current", curtis_driver_->get_battery_current());
-          set_state(info_.joints[0].name + "/" + "battery_voltage", curtis_driver_->get_keyswitch_voltage());
+        else if (frames[i].can_id == traction_driver_->FRAME_1A6_) {
+          set_state(info_.joints[0].name + "/" + "current_rms", traction_driver_->get_current_rms());
+          set_state(info_.joints[0].name + "/" + "battery_current", traction_driver_->get_battery_current());
+          set_state(info_.joints[0].name + "/" + "battery_voltage", traction_driver_->get_keyswitch_voltage());
         }
-        else if (frames[i].can_id == curtis_driver_->FRAME_2A6_) {
-          set_state(info_.joints[0].name + "/" + "interlock", static_cast<double>(curtis_driver_->get_interlock()));
-          set_state(info_.joints[0].name + "/" + "on_fault", static_cast<double>(curtis_driver_->get_on_fault()));
-          set_state(info_.joints[0].name + "/" + "mode_auto", static_cast<double>(curtis_driver_->get_mode_auto()));
-          set_state(info_.joints[0].name + "/" + "mode_manual", static_cast<double>(curtis_driver_->get_mode_manual()));
-          set_state(info_.joints[0].name + "/" + "fault_code", static_cast<double>(curtis_driver_->get_fault_code()));
+        else if (frames[i].can_id == traction_driver_->FRAME_2A6_) {
+          set_state(info_.joints[0].name + "/" + "interlock", static_cast<double>(traction_driver_->get_interlock()));
+          set_state(info_.joints[0].name + "/" + "on_fault", static_cast<double>(traction_driver_->get_on_fault()));
+          set_state(info_.joints[0].name + "/" + "mode_auto", static_cast<double>(traction_driver_->get_mode_auto()));
+          set_state(info_.joints[0].name + "/" + "mode_manual", static_cast<double>(traction_driver_->get_mode_manual()));
+          set_state(info_.joints[0].name + "/" + "fault_code", static_cast<double>(traction_driver_->get_fault_code()));
         }
       }
     }
@@ -203,7 +191,7 @@ hardware_interface::return_type CurtisMotorHardwareInterface::read(
   return hardware_interface::return_type::OK;
 }
 
-hardware_interface::return_type CurtisMotorHardwareInterface::write(
+hardware_interface::return_type SystemTractionHardwareInterface::write(
   const rclcpp::Time & /*time*/, const rclcpp::Duration & /*period*/)
 {
   if (control_rate_write_counts_ <= control_rate_write_loop_counts) {
@@ -222,15 +210,15 @@ hardware_interface::return_type CurtisMotorHardwareInterface::write(
 
   // RCLCPP_INFO(get_logger(), "Calculated throttle value: %d", throttle_value);
   // Create throttle frame
-  curtis_driver_->create_0x226_frame(&throttle_frame_, throttle_value, false);
+  traction_driver_->create_0x226_frame(&throttle_frame_, throttle_value, false);
   // Write throttle command to CAN interface
   can_interface_->write(throttle_frame_);
   
   return hardware_interface::return_type::OK;
 }
 
-}  // namespace curtis_motor_hardware
+}  // namespace caddy_ai2_ros2_control_system_traction_driver
 
 #include "pluginlib/class_list_macros.hpp"
 
-PLUGINLIB_EXPORT_CLASS(caddy_ai2_ros2_control_hardware_curtis_motor_driver::CurtisMotorHardwareInterface, hardware_interface::ActuatorInterface)
+PLUGINLIB_EXPORT_CLASS(caddy_ai2_ros2_control_system_traction_driver::SystemTractionHardwareInterface, hardware_interface::ActuatorInterface)
