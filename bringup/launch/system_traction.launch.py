@@ -11,10 +11,6 @@ def generate_launch_description():
     # Declare arguments
     declared_arguments = []
 
-    # Default update rate
-    default_update_rate = 100 # Of the controller manager
-    update_rate = default_update_rate
-
     # Get controller configuration
     robot_controllers = PathJoinSubstitution(
         [
@@ -26,7 +22,6 @@ def generate_launch_description():
     )
 
     update_rate = read_update_rate_from_controller_yaml(robot_controllers)
-
 
     # Get URDF via xacro
     robot_description_content = Command(
@@ -42,10 +37,10 @@ def generate_launch_description():
     )
 
     # MOSTRAR EL CONTENIDO DEL COMANDO
-    context = LaunchContext()
-    resolved_robot_description_content = robot_description_content.perform(context)
-    print(f"[DEBUG LAUNCH] robot_description_content: {resolved_robot_description_content}")
-    print(f"[DEBUG LAUNCH] robot_description_content: {robot_description_content}")
+    #context = LaunchContext()
+    #resolved_robot_description_content = robot_description_content.perform(context)
+    #print(f"[DEBUG LAUNCH] robot_description_content: {resolved_robot_description_content}")
+    #print(f"[DEBUG LAUNCH] robot_description_content: {robot_description_content}")
 
     robot_description = {"robot_description": robot_description_content}
 
