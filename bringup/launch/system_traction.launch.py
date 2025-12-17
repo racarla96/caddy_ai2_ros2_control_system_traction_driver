@@ -73,39 +73,17 @@ def generate_launch_description():
     )
 
  
-    # robot_controller_spawner = Node(
-    #     package="controller_manager",
-    #     executable="spawner",
-    #     arguments=[
-    #         "diffbot_base_controller",
-    #         "--param-file",
-    #         robot_controllers,
-    #         "--controller-ros-args",
-    #         "-r /diffbot_base_controller/cmd_vel:=/cmd_vel",
-    #     ],
-    # )
-
-    # # Delay start of joint_state_broadcaster after `robot_controller`
-    # # TODO(anyone): This is a workaround for flaky tests. Remove when fixed.
-    # delay_joint_state_broadcaster_after_robot_controller_spawner = RegisterEventHandler(
-    #     event_handler=OnProcessExit(
-    #         target_action=robot_controller_spawner,
-    #         on_exit=[joint_state_broadcaster_spawner],
-    #     )
-    # )
-
-    # nodes = [
-    #     control_node,
-    #     robot_state_pub_node,
-    #     robot_controller_spawner,
-    #     delay_rviz_after_joint_state_broadcaster_spawner,
-    #     delay_joint_state_broadcaster_after_robot_controller_spawner,
-    # ]
+    velocity_controller_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["system_traction_velocity_controller"],
+    )
 
     nodes = [
         control_node,
         robot_state_pub_node,
         joint_state_broadcaster_spawner,
+        velocity_controller_spawner,
     ]
 
     return LaunchDescription(declared_arguments + nodes)
