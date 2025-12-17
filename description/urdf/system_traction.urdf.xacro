@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="curtis_motor">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="system_traction">
   <xacro:arg name="prefix" default="" />
 
   <!-- Import RRBot ros2_control description -->
-  <xacro:include filename="$(find caddy_ai2_ros2_control_hardware_curtis_motor_driver)/ros2_control/curtis_motor.ros2_control.xacro" />
+  <xacro:include filename="$(find caddy_ai2_ros2_control_system_traction_driver)/description/ros2_control/system_traction.ros2_control.xacro" />
 
   <!-- Used for fixing robot -->
 <!-- Used for fixing robot -->
@@ -26,15 +26,15 @@
     </visual>
   </link>
 
-  <joint name="curtis_motor_joint" type="revolute">
+  <joint name="system_traction_joint" type="revolute">
     <parent link="base_link"/>
-    <child link="curtis_motor_link"/>
+    <child link="system_traction_link"/>
     <origin xyz="0 0 0.1" rpy="0 0 0"/>
     <axis xyz="0 1 0"/>
     <limit effort="1000" velocity="1000" lower="-3.14" upper="3.14"/>
   </joint>
 
-  <link name="curtis_motor_link">
+  <link name="system_traction_link">
     <visual>
       <geometry>
         <cylinder length="0.1" radius="0.05"/>
@@ -45,6 +45,6 @@
     </visual>
   </link>
 
-  <xacro:curtis_motor_ros2_control update_rate="$(arg update_rate)"/>
+  <xacro:system_traction_ros2_control update_rate="$(arg update_rate)"/>
 
 </robot>

@@ -1,17 +1,16 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="curtis_motor_ros2_control" params="update_rate">
+  <xacro:macro name="system_traction_ros2_control" params="update_rate">
 
-    <ros2_control name="curtis_motor" type="actuator">
+    <ros2_control name="system_traction" type="actuator">
         <hardware>
-            <plugin>caddy_ai2_ros2_control_hardware_curtis_motor_driver/CurtisMotorHardwareInterface</plugin>
-            <param name="can_interface">vcan_motor_drv</param>
+            <plugin>caddy_ai2_ros2_control_system_traction_driver/SystemTractionHardwareInterface</plugin>
+            <param name="can_interface">can_trac_drv</param>
             <param name="update_rate">${update_rate}</param>
         </hardware>
-        <joint name="curtis_motor_joint">
+        <joint name="system_traction_joint">
             <command_interface name="velocity"/>
-            <!-- CurtisMotorDriver -->
             <state_interface name="velocity"/> <!-- speed -->     
             <state_interface name="motor_rpm"/> <!-- motor_rpm -->
             <state_interface name="current_rms"/> <!-- current rms -->

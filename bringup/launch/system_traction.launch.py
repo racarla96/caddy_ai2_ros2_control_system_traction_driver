@@ -1,8 +1,7 @@
 import yaml
 from launch import LaunchContext
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument
-from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution
+from launch.substitutions import Command, FindExecutable, PathJoinSubstitution
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 from caddy_ai2_ros2_common.launch_utils import read_update_rate_from_controller_yaml
@@ -35,7 +34,7 @@ def generate_launch_description():
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
             PathJoinSubstitution(
-                [FindPackageShare("caddy_ai2_ros2_control_system_traction_driver"), "urdf", "system_traction.urdf.xacro"]
+                [FindPackageShare("caddy_ai2_ros2_control_system_traction_driver"), "description", "urdf", "system_traction.urdf.xacro"]
             ),
             " ",
             f"update_rate:={update_rate}",
@@ -43,6 +42,7 @@ def generate_launch_description():
     )
 
     # MOSTRAR EL CONTENIDO DEL COMANDO
+    context = LaunchContext()
     resolved_robot_description_content = robot_description_content.perform(context)
     print(f"[DEBUG LAUNCH] robot_description_content: {resolved_robot_description_content}")
     print(f"[DEBUG LAUNCH] robot_description_content: {robot_description_content}")
