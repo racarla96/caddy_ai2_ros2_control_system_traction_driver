@@ -57,19 +57,19 @@ def generate_launch_description():
 
 
     
-#    robot_state_pub_node = Node(
-#        package="robot_state_publisher",
-#        executable="robot_state_publisher",
-#        output="both",
-#        parameters=[robot_description],
-#    )
+    robot_state_pub_node = Node(
+        package="robot_state_publisher",
+        executable="robot_state_publisher",
+        output="both",
+        parameters=[robot_description],
+    )
 
     # Load robot state publisher
-#    joint_state_broadcaster_spawner = Node(
-#        package="controller_manager",
-#        executable="spawner",
-#        arguments=["joint_state_broadcaster"],
-#    )
+    joint_state_broadcaster_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["joint_state_broadcaster"],
+    )
 
  
     velocity_controller_spawner = Node(
@@ -80,8 +80,8 @@ def generate_launch_description():
 
     nodes = [
         control_node,
-        #robot_state_pub_node,
-        #joint_state_broadcaster_spawner,
+        robot_state_pub_node,
+        joint_state_broadcaster_spawner,
         velocity_controller_spawner,
     ]
 
