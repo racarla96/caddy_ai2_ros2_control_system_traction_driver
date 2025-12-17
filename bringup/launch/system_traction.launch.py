@@ -1,4 +1,4 @@
-caddy_ai2_ros2ction_driver/bringup/launch/system_traction.launch.import os
+import os
 import yaml
 from launch import LaunchDescription
 from launch.substitutions import Command, FindExecutable, PathJoinSubstitution
