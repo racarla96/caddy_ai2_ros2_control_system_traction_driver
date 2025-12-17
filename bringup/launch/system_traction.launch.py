@@ -19,9 +19,9 @@ def generate_launch_description():
     # Get controller configuration
     robot_controllers = PathJoinSubstitution(
         [
-            FindPackageShare("caddy_ai2_ros2_control_hardware_curtis_motor_driver"),
+            FindPackageShare("caddy_ai2_ros2_control_system_traction_driver"),
             "config",
-            "curtis_motor.yaml",
+            "system_traction.yaml",
         ]
     )
 
@@ -34,7 +34,7 @@ def generate_launch_description():
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
             PathJoinSubstitution(
-                [FindPackageShare("caddy_ai2_ros2_control_hardware_curtis_motor_driver"), "urdf", "curtis_motor.urdf.xacro"]
+                [FindPackageShare("caddy_ai2_ros2_control_system_traction_driver"), "urdf", "system_traction.urdf.xacro"]
             ),
             " ",
             f"update_rate:={update_rate}",
