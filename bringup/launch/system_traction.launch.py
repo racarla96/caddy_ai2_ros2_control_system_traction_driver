@@ -20,6 +20,7 @@ def generate_launch_description():
     robot_controllers = PathJoinSubstitution(
         [
             FindPackageShare("caddy_ai2_ros2_control_system_traction_driver"),
+            "bringup",
             "config",
             "system_traction.yaml",
         ]
