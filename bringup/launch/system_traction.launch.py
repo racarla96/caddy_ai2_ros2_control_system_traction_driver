@@ -1,5 +1,4 @@
 import yaml
-from launch import LaunchContext
 from launch import LaunchDescription
 from launch.substitutions import Command, FindExecutable, PathJoinSubstitution
 from launch_ros.actions import Node
@@ -7,9 +6,6 @@ from launch_ros.substitutions import FindPackageShare
 from caddy_ai2_ros2_common.launch_utils import read_update_rate_from_controller_yaml
 
 def generate_launch_description():
-
-    # Declare arguments
-    declared_arguments = []
 
     # Get controller configuration
     robot_controllers = PathJoinSubstitution(
@@ -36,46 +32,44 @@ def generate_launch_description():
         ]
     )
 
-    # MOSTRAR EL CONTENIDO DEL COMANDO
-    #context = LaunchContext()
-    #resolved_robot_description_content = robot_description_content.perform(context)
-    #print(f"[DEBUG LAUNCH] robot_description_content: {resolved_robot_description_content}")
-    #print(f"[DEBUG LAUNCH] robot_description_content: {robot_description_content}")
-
     robot_description = {"robot_description": robot_description_content}
 
-    # ROS2 Control node
+    # ROS2 Control node with namespace
     control_node = Node(
         package="controller_manager",
         executable="ros2_control_node",
+        namespace="traction",
         parameters=[
-            robot_description,     # ← ESTO FALTABA
+            robot_description,
             robot_controllers
         ],
         output="both",
     )
 
-
-    
+    # Robot State Publisher with namespace
     robot_state_pub_node = Node(
         package="robot_state_publisher",
         executable="robot_state_publisher",
+        namespace="traction",
         output="both",
         parameters=[robot_description],
     )
 
-    # Load robot state publisher
+    # Spawners with namespace
     joint_state_broadcaster_spawner = Node(
         package="controller_manager",
         executable="spawner",
+        namespace="traction",
         arguments=["joint_state_broadcaster"],
+        output="screen",
     )
 
- 
     velocity_controller_spawner = Node(
         package="controller_manager",
         executable="spawner",
+        namespace="traction",
         arguments=["system_traction_velocity_controller"],
+        output="screen",
     )
 
     nodes = [
@@ -85,4 +79,4 @@ def generate_launch_description():
         velocity_controller_spawner,
     ]
 
-    return LaunchDescription(declared_arguments + nodes)
+    return LaunchDescription(nodes)
