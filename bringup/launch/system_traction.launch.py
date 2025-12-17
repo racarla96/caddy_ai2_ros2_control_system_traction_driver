@@ -5,7 +5,7 @@ from launch.actions import DeclareLaunchArgument
 from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
-
+from caddy_ai2_ros2_common.launch_utils import read_update_rate_from_controller_yaml
 
 def generate_launch_description():
 
@@ -25,24 +25,7 @@ def generate_launch_description():
         ]
     )
 
-    # LEER EL YAML DE CONFIGURACIÓN DEL CONTROLADOR
-    # Crear un contexto de lanzamiento
-    context = LaunchContext()
-    # Evaluar y obtener el valor real de la sustitución
-    resolved_robot_controllers_path = robot_controllers.perform(context)
-    # Imprimir el valor resuelto
-    # print(f"[DEBUG LAUNCH] path del YAML: {resolved_robot_controllers_path}")
-    # Leer el contenido del archivo YAML
-    with open(resolved_robot_controllers_path, 'r') as yaml_file:
-        try:
-            # Cargar el contenido del YAML
-            yaml_content = yaml.safe_load(yaml_file)
-            # Imprimir el contenido del YAML para depuración
-            print("[DEBUG LAUNCH] YAML Content:", yaml_content) 
-            # Obtener el valor de update_rate o usar 100 como predeterminado
-            update_rate = yaml_content.get("controller_manager", default_update_rate).get("ros__parameters", default_update_rate).get("update_rate", default_update_rate)
-        except yaml.YAMLError as exc:
-            print(f"[ERROR LAUNCH] Error al cargar el YAML: {exc}")
+    update_rate = read_update_rate_from_controller_yaml(robot_controllers)
 
 
     # Get URDF via xacro

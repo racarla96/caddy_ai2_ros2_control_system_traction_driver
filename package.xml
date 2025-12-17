@@ -14,7 +14,7 @@
   <depend>pluginlib</depend>
   <depend>rclcpp</depend>
   <depend>rclcpp_lifecycle</depend>
-
+  <depend>caddy_ai2_ros2_common</depend>
 
   <exec_depend>xacro</exec_depend>
 
