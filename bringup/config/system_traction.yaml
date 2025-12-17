@@ -8,4 +8,7 @@ controller_manager:
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
-    system_traction_velocity_controller.joints: ["system_traction_joint"]
+system_traction_velocity_controller:
+  ros__parameters:
+    joints:
+      - system_traction_joint
