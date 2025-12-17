@@ -47,16 +47,12 @@ target_include_directories(${PROJECT_NAME} PUBLIC
   $<INSTALL_INTERFACE:include>
 )
 
-# Add caddy_ai2_ros2_common headers
-target_include_directories(${PROJECT_NAME} PUBLIC
-  ${caddy_ai2_ros2_common_INCLUDE_DIRS}
-)
-
 target_link_libraries(${PROJECT_NAME} PUBLIC
   hardware_interface::hardware_interface
   pluginlib::pluginlib
   rclcpp::rclcpp
   rclcpp_lifecycle::rclcpp_lifecycle
+  caddy_ai2_ros2_common::socketcan_interface
 )
 
 # Export hardware plugins
