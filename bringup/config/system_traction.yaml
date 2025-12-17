@@ -5,7 +5,7 @@ controller_manager:
     system_traction_velocity_controller:
       type: velocity_controllers/JointGroupVelocityController
 
-    joint_state_broadcaster2:
+    joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
 system_traction_velocity_controller:
