@@ -1,4 +1,0 @@
-/home/racarla96/Documentos/ws_dev_ros2/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/test/socket_can_interface/build/CMakeFiles/socket_can_interface.dir
-/home/racarla96/Documentos/ws_dev_ros2/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/test/socket_can_interface/build/CMakeFiles/test_socket_can_interface_reader.dir
-/home/racarla96/Documentos/ws_dev_ros2/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/test/socket_can_interface/build/CMakeFiles/edit_cache.dir
-/home/racarla96/Documentos/ws_dev_ros2/src/caddy_ai2_ros2_control_hardware_curtis_motor_driver/test/socket_can_interface/build/CMakeFiles/rebuild_cache.dir

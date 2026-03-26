@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/test_socket_can_interface_reader.dir/src/main.cpp.o -o test_socket_can_interface_reader  libsocket_can_interface.a /usr/lib/x86_64-linux-gnu/libsocketcan.so 

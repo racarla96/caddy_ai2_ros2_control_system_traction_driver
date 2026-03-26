@@ -1,2 +1,0 @@
-/usr/bin/ar qc libsocket_can_interface.a CMakeFiles/socket_can_interface.dir/src/socket_can_interface.cpp.o
-/usr/bin/ranlib libsocket_can_interface.a

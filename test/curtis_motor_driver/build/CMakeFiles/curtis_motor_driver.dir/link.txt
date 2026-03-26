@@ -1,2 +1,0 @@
-/usr/bin/ar qc libcurtis_motor_driver.a CMakeFiles/curtis_motor_driver.dir/src/curtis_motor_driver.cpp.o
-/usr/bin/ranlib libcurtis_motor_driver.a
