@@ -1,110 +1,238 @@
-# caddy_ai2_ros2_control_hardware_curtis_motor_driver
+# Caddy AI2 ROS2 Control System Traction Driver
 
-Frecuencia de los mensajes de control a 25 Hz
+Plugin de tipo **Controller** (`controller_interface::ControllerInterface`) para ROS2 Control que gestiona el sistema de tracción del robot Caddy AI2 mediante comunicación CAN directa con el controlador de motor Curtis 1234.
 
-# Como configurar el uso de CAN en Linux
-Con los comandos
-lsusb
-sudo dmesg | grep -i can
-Podemos ver los dispositivos Can conectados
+El vehículo viene equipado con un controlador Curtis 1234 (equivalente al Control System ID600 de la figura). En la imagen siguiente se muestra esquemáticamente el sistema de tracción de un carrito de golf similar al Caddy AI2.
 
-Con 
-ip link show
-Podemos ver si tiene la interfaz de red lista para ser configurada
+![Sistema de tracción](doc/img/Transaxle-for-Electric-Golf-cars-5kw-1.jpg)
 
-# Crear una interfaz virtual para testear el driver
+## Descripción
 
-sudo ip link add dev vcan0 type vcan
+Este paquete implementa un **Controller** de ROS2 Control que sustituye a la antigua arquitectura basada en Hardware Interface. El controlador gestiona directamente la comunicación CAN con el motor Curtis sin necesidad de un hardware interface separado:
 
-# Necesario Agregar tu usuario al grupo netdev
+- **Motor Curtis 1234** — controlador de tracción con protocolo CAN propietario
+- **Comunicación CAN** — mediante SocketCAN (Linux), adaptador Ixxat USB-to-CAN V2
+- **Frecuencia CAN** — mensajes de estado a ~25 Hz desde el Curtis
+- **Interfaz ROS2** — recibe consigna de velocidad vía tópico, publica estado del motor
 
-sudo usermod -aG netdev $USER
+## Arquitectura
 
-Después, cierra la sesión y vuelve a entrar para que los cambios tengan efecto.
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    ROS2 Control Manager                      │
+│                    (frecuencia configurable)                  │
+└────────────────────────┬────────────────────────────────────┘
+                         │
+                         ▼
+┌─────────────────────────────────────────────────────────────┐
+│           TractionDriverController (Controller)              │
+│                                                              │
+│  ~/reference (Float64) ──► velocidad objetivo [m/s]         │
+│                                                              │
+│  ~/state/velocity        ◄── velocidad [m/s]                │
+│  ~/state/motor_rpm       ◄── RPM del motor                  │
+│  ~/state/current_rms     ◄── corriente RMS [A]              │
+│  ~/state/battery_current ◄── corriente batería [A]          │
+│  ~/state/battery_voltage ◄── tensión batería [V]            │
+│  ~/state/interlock       ◄── estado interlock               │
+│  ~/state/on_fault        ◄── estado de fallo                │
+│  ~/state/mode_auto       ◄── modo automático                │
+│  ~/state/mode_manual     ◄── modo manual                    │
+│  ~/state/fault_code      ◄── código de fallo                │
+│                                                              │
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │  • Gestión de frecuencias (ratio, multiplicidades)   │   │
+│  │  • Conversión m/s ↔ throttle value                   │   │
+│  │  • Offsets de lectura/escritura                      │   │
+│  └──────────────────────────────────────────────────────┘   │
+│                         │                                    │
+│                         ▼                                    │
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │           TractionDriver                             │   │
+│  │  • process_frames(): decode 0x227, 0x1A6, 0x2A6     │   │
+│  │  • create_0x226_frame(): encode throttle command     │   │
+│  └──────────────────────────────────────────────────────┘   │
+│                         │                                    │
+│                         ▼                                    │
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │         SocketCANInterface                           │   │
+│  │  • Socket CAN RAW / Non-blocking I/O                │   │
+│  └──────────────────────────────────────────────────────┘   │
+└────────────────────────┬────────────────────────────────────┘
+                         │
+                         ▼
+                  ┌─────────────┐
+                  │   CAN Bus   │
+                  │  (can/vcan) │
+                  └─────────────┘
+                         │
+                         ▼
+                  ┌─────────────┐
+                  │  Curtis 1234│
+                  └─────────────┘
+```
 
-# Instalación de dependencias
-### libsocketcan
-sudo apt-get install libsocketcan* -y
-### libsocketcanpp (is a socketcan wrapper library for C++)
-git clone https://github.com/SimonCahill/libsockcanpp.git
-cd libsockcanpp
-mkdir build && cd build
-cmake ..
-make -j
-sudo make install
-# can-utils
-git clone https://github.com/linux-can/can-utils.git
-cd can-utils
-make
-sudo make install
-# Ixxat USB-to-CAN V2 compact
-sudo apt install linux-headers-$(uname -r)
-sudo apt install --reinstall build-essential
-ls /usr/src/linux-headers-$(uname -r)
-cd drivers/ix_usb_can_2.0.520-REL
-make all
-sudo make install
+## Protocolo CAN Curtis
 
+| ID CAN | Dirección | Contenido |
+|--------|-----------|-----------|
+| `0x226` | TX (host → Curtis) | Throttle command (consigna de velocidad) |
+| `0x227` | RX (Curtis → host) | Estado: interlock, fault, mode |
+| `0x1A6` | RX | Corriente RMS, corriente batería, tensión, BDI% |
+| `0x2A6` | RX | RPM motor, velocidad vehículo, temperatura |
 
-# Enlaces
-### libsocketcan
+## Componentes
 
-### libsocketcanpp (is a socketcan wrapper library for C++)
-https://github.com/SimonCahill/libsockcanpp
+### TractionDriverController
+Controller principal que implementa `controller_interface::ControllerInterface`.
 
-# can-utils
-https://github.com/linux-can/can-utils
+**Lifecycle:**
+- `on_init()`: Crea el `ParamListener`.
+- `on_configure()`: Instancia `SocketCANInterface` y `TractionDriver`, calcula multiplicidades, crea subscriber y publishers.
+- `on_activate()`: Inicializa la interfaz CAN, envía frame de reset al Curtis y espera 5 s para su inicialización.
+- `update()`: Bloque de lectura (recibe frames CAN, decodifica, publica estados) y bloque de escritura (convierte velocidad a throttle, envía frame 0x226).
+- `on_deactivate()`: Envía throttle = 0 (parada segura).
+- `on_cleanup()`: Destruye todos los recursos.
 
-# Ixxat USB-to-CAN V2 compact
-https://www.hms-networks.com/p/1-01-0281-12001-ixxat-usb-to-can-v2-compact?tab=tab-support
+### TractionDriver
+Procesador de frames CAN del Curtis (no tiene estado de comunicación propio):
+- `process_frames(frames)`: Decodifica frames recibidos y actualiza estado interno.
+- `create_0x226_frame(frame, throttle, reset)`: Prepara el frame de comando de velocidad.
+- Getters: `get_speed()`, `get_motor_rpm()`, `get_current_rms()`, `get_battery_current()`, `get_keyswitch_voltage()`, `get_interlock()`, `get_on_fault()`, `get_mode_auto()`, `get_mode_manual()`, `get_fault_code()`.
 
-## Configuración en /etc/sudoers (Recomendado)
+## Conversión de velocidad
 
-Para evitar tener que ejecutar el programa como root, puedes configurar el archivo /etc/sudoers para permitir que un usuario específico ejecute el comando ip link sin necesidad de contraseña.
+```
+throttle_value = round( (velocity_mps / MAX_V_MPS) * SHRT_MAX )
+throttle_value = clamp(throttle_value, -SHRT_MAX, SHRT_MAX)
 
-    Abre el archivo /etc/sudoers con sudo visudo.
+MAX_V_MPS = π × 0.5 m × (4300 RPM / 60) / 16 ≈ 7.03 m/s
+```
 
-    Añade una línea como la siguiente:
+## Parámetros
 
-    usuario ALL=(ALL) NOPASSWD: /sbin/ip
+| Parámetro | Tipo | Por defecto | Descripción |
+|-----------|------|-------------|-------------|
+| `interface_name` | string | — | Nombre de la interfaz SocketCAN (ej. `can_trac_drv`) |
+| `controller_manager_frequency_hz` | double | 100.0 | Frecuencia del controller manager (Hz) |
+| `hardware_sample_frequency_hz` | double | 500.0 | Frecuencia de muestreo del bus CAN (Hz) |
+| `read_multiplicity` | int | 1 | Ciclos del CM entre lecturas CAN |
+| `write_multiplicity` | int | 10 | Ciclos del CM entre envíos de throttle |
+| `read_offset` | int | 0 | Desfase inicial del contador de lectura |
+| `write_offset` | int | 1 | Desfase inicial del contador de escritura |
 
-    Reemplaza usuario con el nombre del usuario que ejecutará el programa.
+### Ejemplo de configuración
 
-    Advertencia: Modificar /etc/sudoers incorrectamente puede bloquear el acceso al sistema. Usa visudo para evitar errores de sintaxis.
-    
-### **Guía para asignar el nombre personalizado al adaptador USB-CAN**
+```yaml
+traction_driver_controller:
+  ros__parameters:
+    interface_name: can_trac_drv
+    controller_manager_frequency_hz: 100.0
+    hardware_sample_frequency_hz: 500.0
+    read_multiplicity: 1
+    write_multiplicity: 4
+    read_offset: 0
+    write_offset: 1
+```
 
-1. Dale permisos de ejecución:
+### Plugin (controller_manager config)
 
-   ```bash
-   sudo chmod +x asignar_can_motor_drv.sh
-   sudo chmod +x asignar_can_steer_drv.sh
-   ```
-2. Ejecútalo:
+```yaml
+controller_manager:
+  ros__parameters:
+    update_rate: 100
+    traction_driver_controller:
+      type: caddy_ai2_ros2_control_system_traction_driver/TractionDriverController
+```
 
-   ```bash
-   sudo ./asignar_can_motor_drv.sh
-   sudo ./asignar_can_steer_drv.sh
-   ```
-3. Verifica
+## Instalación y compilación
 
-    Después de desconectar y reconectar el adaptador, verifica que el nombre se ha asignado correctamente:
-    ```bash
-    ip link show
-    ```
+```bash
+cd ~/ws_ros2_caddy_dev
+colcon build --packages-select caddy_ai2_ros2_common caddy_ai2_ros2_control_system_traction_driver
+source install/setup.bash
+```
 
-    Deberías ver tu interfaz como `can_motor_drv` o `can_steer_drv`.
+## Configuración del bus CAN
 
+### CAN virtual (desarrollo)
 
-ros2 control load_controller --set-state active curtis_motor_velocity_controller
+```bash
+sudo ./scripts/setup_vcan_trac_drv.sh
+```
 
+### CAN físico (hardware real)
 
-# Enviar mensaje
+```bash
+sudo ./scripts/setup_can_trac_drv.sh
+```
 
-sudo ip link add dev vcan_motor_drv type vcan
-sudo ip link set up vcan_motor_drv
+## Uso
 
-ros2 topic pub -r 25  /curtis_motor_velocity_controller/commands std_msgs/msg/Float64 "{data: 1.0}"
+```bash
+# Enviar consigna de velocidad (m/s)
+ros2 topic pub /traction_driver_controller/reference std_msgs/msg/Float64 "data: 1.5"
 
-# TODOs
-- [ ] Include on launch file the interface as parameter to easy change it
+# Ver velocidad medida
+ros2 topic echo /traction_driver_controller/state/velocity
+
+# Ver estado de fallo
+ros2 topic echo /traction_driver_controller/state/on_fault
+ros2 topic echo /traction_driver_controller/state/fault_code
+
+# Estado del controller
+ros2 control list_controllers
+```
+
+## Estructura del proyecto
+
+```
+caddy_ai2_ros2_control_system_traction_driver/
+├── include/
+│   └── caddy_ai2_ros2_control_system_traction_driver/
+│       ├── traction_driver_controller.hpp   # Controller (nuevo)
+│       ├── traction_driver.hpp              # Driver CAN Curtis
+│       └── visibility_control.h
+├── src/
+│   ├── traction_driver_controller.cpp       # Controller (nuevo)
+│   ├── traction_driver_controller_parameters.yaml
+│   └── traction_driver.cpp
+├── scripts/
+│   ├── setup_can_trac_drv.sh
+│   └── setup_vcan_trac_drv.sh
+├── doc/img/
+├── plugin_description.xml
+├── CMakeLists.txt
+├── package.xml
+└── README.md
+```
+
+## Troubleshooting
+
+### CAN interface not found
+
+```bash
+ip link show   # listar interfaces disponibles
+```
+
+### Curtis no responde
+
+1. Verificar bitrate del bus CAN (500 kbps por defecto).
+2. Monitorear tráfico: `candump can_trac_drv`
+3. Verificar que el Curtis esté alimentado (keyswitch ON).
+
+### Fault en el Curtis
+
+Ver `~/state/fault_code` y consultar el manual de fallos del Curtis 1234.
+
+## Autores
+
+- **Desarrollador Principal**: Rafael Carbonell Lázaro (racarla96)
+- **Proyecto**: Caddy AI2 – Proyecto CERVAREC
+
+## Licencia
+
+Copyright (c) 2025, Rafael Carbonell Lázaro (racarla96)
+
+Distribuido bajo la licencia **Creative Commons Attribution 4.0 International (CC BY 4.0)**.
+https://creativecommons.org/licenses/by/4.0/

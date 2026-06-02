@@ -1,90 +1,86 @@
-# Copyright (c) 2025 Rafael Carbonell Lázaro (racarla96)
-# Licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0)
-# See: https://creativecommons.org/licenses/by/4.0/
-
 cmake_minimum_required(VERSION 3.16)
-project(caddy_ai2_ros2_control_system_traction_driver LANGUAGES CXX)
+project(caddy_ai2_ros2_control_system_traction_driver)
 
-# Establecer el estándar C++20 para todo el proyecto
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS ON)
+find_package(ros2_control_cmake REQUIRED)
+set_compiler_options()
+export_windows_symbols()
 
-# find dependencies
+# Dependencies
 set(THIS_PACKAGE_INCLUDE_DEPENDS
-  hardware_interface
+  controller_interface
+  generate_parameter_library
   pluginlib
   rclcpp
   rclcpp_lifecycle
+  std_msgs
 )
-
-# Specify the required version of ros2_control
-find_package(controller_manager 4.0.0)
-# Handle the case where the required version is not found
-if(NOT controller_manager_FOUND)
-  message(FATAL_ERROR "ros2_control version 4.0.0 or higher is required. "
-  "Are you using the correct branch of the ros2_control_demos repository?")
-endif()
-
-# find dependencies
-find_package(backward_ros REQUIRED)
 find_package(ament_cmake REQUIRED)
 find_package(caddy_ai2_ros2_common REQUIRED)
 foreach(Dependency IN ITEMS ${THIS_PACKAGE_INCLUDE_DEPENDS})
   find_package(${Dependency} REQUIRED)
 endforeach()
 
-## COMPILE
-add_library(
-  ${PROJECT_NAME}
-  SHARED
-  src/system_traction_hardware.cpp
+# Generate parameters from YAML
+generate_parameter_library(
+  traction_driver_controller_parameters
+  src/traction_driver_controller_parameters.yaml
+)
+
+# Library definition
+add_library(${PROJECT_NAME} SHARED
+  src/traction_driver_controller.cpp
   src/traction_driver.cpp
 )
-
+target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
 target_include_directories(${PROJECT_NAME} PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:include>
+  $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include/${PROJECT_NAME}>
 )
 
-target_link_libraries(${PROJECT_NAME} PUBLIC
-  hardware_interface::hardware_interface
-  pluginlib::pluginlib
-  rclcpp::rclcpp
-  rclcpp_lifecycle::rclcpp_lifecycle
-  caddy_ai2_ros2_common::socketcan_interface
+# Dependencies
+target_link_libraries(${PROJECT_NAME}
+  PUBLIC
+    traction_driver_controller_parameters
+    caddy_ai2_ros2_common::socketcan_interface
+    controller_interface::controller_interface
+    pluginlib::pluginlib
+    rclcpp::rclcpp
+    rclcpp_lifecycle::rclcpp_lifecycle
+    ${std_msgs_TARGETS}
 )
 
-# Export hardware plugins
-pluginlib_export_plugin_description_file(hardware_interface hardware_interface_plugin.xml)
+# Pre-existing traction_driver.cpp was written before ros2_control_cmake's strict
+# conversion-warning policy; suppress only for that source.
+set_source_files_properties(
+  src/traction_driver.cpp
+  PROPERTIES COMPILE_OPTIONS "-Wno-conversion"
+)
 
-# INSTALL
+# Export the plugin description
+pluginlib_export_plugin_description_file(controller_interface plugin_description.xml)
+
 install(
   DIRECTORY include/
   DESTINATION include/${PROJECT_NAME}
 )
 
 install(
-  DIRECTORY description bringup scripts
-  DESTINATION share/${PROJECT_NAME}
-)
-
-install(TARGETS ${PROJECT_NAME}
+  TARGETS ${PROJECT_NAME}
+  traction_driver_controller_parameters
   EXPORT export_${PROJECT_NAME}
-  LIBRARY DESTINATION lib
   ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin
-  INCLUDES DESTINATION include
 )
 
 # Install scripts with executable permissions
 install(PROGRAMS
-  scripts/setup_can_trac_drv.sh 
+  scripts/setup_can_trac_drv.sh
   scripts/setup_vcan_trac_drv.sh
   DESTINATION lib/${PROJECT_NAME}
 )
 
-## EXPORTS
+# Export targets and dependencies
 ament_export_targets(export_${PROJECT_NAME} HAS_LIBRARY_TARGET)
 ament_export_dependencies(${THIS_PACKAGE_INCLUDE_DEPENDS})
 ament_package()

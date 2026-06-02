@@ -3,20 +3,21 @@
 <package format="3">
   <name>caddy_ai2_ros2_control_system_traction_driver</name>
   <version>0.1.0</version>
-  <description>ROS2 Control hardware interface for Curtis motor driver</description>
+  <description>ros2_control Controller plugin that drives the Caddy AI2 Curtis traction system over CAN</description>
   <maintainer email="racarla1@inf.upv.es">Rafael Carbonell Lázaro</maintainer>
   <license>CC-BY-4.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
-  <build_depend>ros2_control_cmake</build_depend>
+  <buildtool_depend>ros2_control_cmake</buildtool_depend>
 
-  <depend>hardware_interface</depend>
+  <build_depend>generate_parameter_library</build_depend>
+
+  <depend>controller_interface</depend>
   <depend>pluginlib</depend>
   <depend>rclcpp</depend>
   <depend>rclcpp_lifecycle</depend>
+  <depend>std_msgs</depend>
   <depend>caddy_ai2_ros2_common</depend>
-
-  <exec_depend>xacro</exec_depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>

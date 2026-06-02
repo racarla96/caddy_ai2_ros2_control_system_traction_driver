@@ -1,0 +1,77 @@
+traction_driver_controller:
+
+  interface_name:
+    {
+      type: string,
+      description: "SocketCAN network interface name (e.g. can_trac_drv, vcan_trac_drv)",
+      read_only: true,
+      validation: {
+        not_empty<>: []
+      }
+    }
+
+  controller_manager_frequency_hz:
+    {
+      type: double,
+      default_value: 100.0,
+      description: "Controller manager update frequency in Hz",
+      read_only: true,
+      validation: {
+        gt<>: [0.0]
+      }
+    }
+
+  hardware_sample_frequency_hz:
+    {
+      type: double,
+      default_value: 500.0,
+      description: "CAN bus hardware sampling frequency in Hz",
+      read_only: true,
+      validation: {
+        gt<>: [0.0]
+      }
+    }
+
+  read_multiplicity:
+    {
+      type: int,
+      default_value: 1,
+      description: "Number of controller cycles between CAN frame reads",
+      read_only: true,
+      validation: {
+        gt<>: [0]
+      }
+    }
+
+  write_multiplicity:
+    {
+      type: int,
+      default_value: 10,
+      description: "Number of controller cycles between throttle command writes",
+      read_only: true,
+      validation: {
+        gt<>: [0]
+      }
+    }
+
+  read_offset:
+    {
+      type: int,
+      default_value: 0,
+      description: "Phase offset in controller cycles applied to the read counter at startup",
+      read_only: true,
+      validation: {
+        gt<>: [-1]
+      }
+    }
+
+  write_offset:
+    {
+      type: int,
+      default_value: 1,
+      description: "Phase offset in controller cycles applied to the write counter at startup",
+      read_only: true,
+      validation: {
+        gt<>: [-1]
+      }
+    }
